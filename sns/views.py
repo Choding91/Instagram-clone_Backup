@@ -1,11 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Feed
 
 # 메인
 def main(request):
-    return render(request, 'sns/index.html')
+    all_feed = Feed.objects.all().order_by('-created_at')
+    return render(request, 'sns/index.html', {'feeds': all_feed})
 
-# 전체 피드 - 현지
+# 특정 피드 - 현지
 def feed(request):
     return render(request, 'sns/index.html')
 

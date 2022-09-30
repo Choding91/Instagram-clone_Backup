@@ -35,6 +35,7 @@
             <section class="section_feed">
                 <!-- 작성 된 피드가 나오는 곳 -->
                 <div class="feed_list">
+                {% for feed in feeds %}
                     <div class="feed_card">
                         <div class="card_header list_profile">
                             <div class="profile_image">
@@ -42,7 +43,7 @@
                             </div>
                             <div class="profile_meta">
                                 <div class="feed_author profile_username">
-                                    <span>LeeHyunji</span>
+                                    <span>{{ feed.author }}</span>
                                 </div>
                                 <div class="feed_location sm_meta">
                                     <p>대학로/혜화</p>
@@ -85,13 +86,13 @@
                             </div>
                             <div class="card_content">
                                 <p>
-                                    <span class="feed_author profile_username"><a href="#">LeeHyunji</a></span>
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam exercitationem, soluta fugiat reiciendis corrupti reprehenderit ad quae vitae quia ratione nulla, nisi, facilis similique doloribus sequi. Harum esse deleniti inventore ipsa incidunt culpa officia nobis, consectetur minus deserunt pariatur, sequi ipsum itaque velit suscipit quibusdam est nisi enim ea a debitis? Esse omnis voluptate assumenda! Fuga nam voluptatum iure inventore eos voluptas quisquam eligendi corporis iusto nisi! Tenetur hic est aliquam perferendis dolorum ratione rem commodi dolore itaque. Sequi, explicabo labore. Ipsum nihil dolore quis nobis explicabo saepe sed? Quasi repellat culpa, vel dolore quo delectus voluptatem quidem expedita. Itaque iste blanditiis, quis perferendis consequatur deserunt, dolorem quae mollitia dolor, consectetur repellendus aliquam voluptate sed cum vero ipsa officia non impedit. Veniam hic quidem aperiam earum dignissimos consequuntur quae odit, accusantium, mollitia facere aliquid doloremque vel sunt expedita ad nisi magnam perferendis at sed corporis illo quibusdam. Sit nemo corrupti, laborum amet animi pariatur sequi deleniti architecto, ipsam, cumque hic nobis. Totam ut quas voluptates sit dolores officia dolorem illo, ipsam nesciunt omnis beatae consequatur voluptate distinctio optio adipisci, praesentium maiores vitae earum soluta porro culpa blanditiis consectetur accusantium. Voluptatem optio quam numquam magni magnam nisi ipsa facilis sunt! Cumque?
+                                    <span class="feed_author profile_username"><a href="#">{{ feed.author }}</a></span>
+                                    {{ feed.content }}
                                 </p>
                             </div>
                             <div class="card_datetime">
                                 <time class="feed_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022">
-                                    1 hour AGO
+                                    {{ feed.created_at|timesince }} AGO
                                 </time>
                             </div>
                         </div>
@@ -110,7 +111,7 @@
                             </div>
                             <div class="profile_meta">
                                 <div class="feed_author profile_username">
-                                    <span>LeeHyunji</span>
+                                    <span>{{ feed.author }}</span>
                                 </div>
                                 <div class="feed_location sm_meta">
                                     <p>대학로/혜화</p>
@@ -153,13 +154,13 @@
                             </div>
                             <div class="card_content">
                                 <p>
-                                    <span class="feed_author profile_username"><a href="#">LeeHyunji</a></span>
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam exercitationem, soluta fugiat reiciendis corrupti reprehenderit ad quae vitae quia ratione nulla, nisi, facilis similique doloribus sequi. Harum esse deleniti inventore ipsa incidunt culpa officia nobis, consectetur minus deserunt pariatur, sequi ipsum itaque velit suscipit quibusdam est nisi enim ea a debitis? Esse omnis voluptate assumenda! Fuga nam voluptatum iure inventore eos voluptas quisquam eligendi corporis iusto nisi! Tenetur hic est aliquam perferendis dolorum ratione rem commodi dolore itaque. Sequi, explicabo labore. Ipsum nihil dolore quis nobis explicabo saepe sed? Quasi repellat culpa, vel dolore quo delectus voluptatem quidem expedita. Itaque iste blanditiis, quis perferendis consequatur deserunt, dolorem quae mollitia dolor, consectetur repellendus aliquam voluptate sed cum vero ipsa officia non impedit. Veniam hic quidem aperiam earum dignissimos consequuntur quae odit, accusantium, mollitia facere aliquid doloremque vel sunt expedita ad nisi magnam perferendis at sed corporis illo quibusdam. Sit nemo corrupti, laborum amet animi pariatur sequi deleniti architecto, ipsam, cumque hic nobis. Totam ut quas voluptates sit dolores officia dolorem illo, ipsam nesciunt omnis beatae consequatur voluptate distinctio optio adipisci, praesentium maiores vitae earum soluta porro culpa blanditiis consectetur accusantium. Voluptatem optio quam numquam magni magnam nisi ipsa facilis sunt! Cumque?
+                                    <span class="feed_author profile_username"><a href="#">{{ feed.author }}</a></span>
+                                    {{ feed.content }}
                                 </p>
                             </div>
                             <div class="card_datetime">
                                 <time class="feed_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022">
-                                    1 hour AGO
+                                    {{ feed.created_at|timesince }} AGO
                                 </time>
                             </div>
                         </div>
@@ -170,6 +171,7 @@
                             </form>
                         </div>
                     </div>
+                {% endfor %}
                 </div>
             </section>
         </div>
