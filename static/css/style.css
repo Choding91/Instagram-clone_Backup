@@ -1,0 +1,49 @@
+ /* reset */
+ a{
+    color: inherit;
+    text-decoration: unset;
+}
+.container{
+    max-width: 1320px;
+    margin: auto;
+    padding: 0 15px;
+}
+
+/* header */
+header.header_sticky{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 0 0 8px rgb(0 0 0 / 10%);
+}
+
+header nav{
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+header nav .flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header nav ul.navbar_menu{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+header nav ul.navbar_menu > li > a{
+    display: block;
+    line-height: 20px;
+    padding: 20px 20px;
+}
+
+
+.sample_profile{
+    width: 24px;
+    height: 24px;
+    background-color: aquamarine;
+    border-radius: 50%;
+}
