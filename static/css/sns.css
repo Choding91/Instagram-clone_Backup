@@ -118,6 +118,8 @@ button:focus{
     border-radius : 8px;
     margin-bottom: 16px;
     line-height: 1.26;
+    overflow: hidden;
+
 }
 .feed_card .card_header{
     padding: 12px 16px;
@@ -197,6 +199,8 @@ button:focus{
     resize: none;
     vertical-align: middle;
     padding-left: 16px;
+    height: 1.5em;
+    transition: 0.4s;
 }
 .form_feed_direct_comment button[type='submit']{
     padding: 0 16px;
@@ -206,7 +210,7 @@ button:focus{
 
 
 /* feed_card_text */
-.feed_card .card_header{
+.feed_card_text .card_header{
     border-bottom: 0
 }
 .feed_card_text .card_body{
@@ -273,6 +277,117 @@ ul.follow_list>li{
 }
 
 
+/* .feed_card_detail */
+.section_feed_detail .container{
+    max-width: 1140px;;
+}
+.feed_card_left {
+    width: calc(100% - 400px);
+}
+.feed_card_detail .feed_card_right{
+    width: 400px;
+    min-width: 400px;
+    flex: 0 0 400px;
+    position: relative;
+    /* border-left : 1px solid rgb(219, 219, 219); */
+}
+
+.feed_card_detail  .feed-images{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-top: 100%;
+    background-color: #000;
+}
+.feed_card_detail .feed-images> img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.feed_card_detail .profile_image{
+    width: 32px;
+    height: 32px;
+}
+.feed_card_detail .card_body{
+    padding: 16px 16px 32px;
+    position: absolute;
+    min-height: 400px;
+    height: 100%;
+    max-height: calc(100% - 57px - 170px);
+
+    overflow: auto;
+    overscroll-behavior: none;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.feed_card_detail .card_body::-webkit-scrollbar {
+    display: none;
+}
+.feed_line, .feed_comment_line{
+    margin-bottom: 16px;
+}
+.feed_card_detail .card_content{
+    height: 100%;
+    overflow: visible;
+    display:block;
+    word-break:keep-all;
+}
+.feed_card_detail .sm_time{
+    color: #8e8e8e;
+    font-size: 0.7em;
+    text-transform:uppercase;
+}
+
+.feed_card_detail .card_footer{
+    position: absolute;
+    padding: 0;
+    bottom:0;
+    width: 100%;
+    background: #fff;
+}
+.feed_card_detail .comment_form_box{
+    margin-top: 16px;
+    border-top: solid 1px rgb(219, 219, 219);
+    padding: 16px 0 ;
+}
+.feed_card_detail .comment_form_box textarea:focus,.feed_card_detail .comment_form_box textarea:active{
+    transition: 0.4s;
+    height: 4em;
+}
+
+
+/* .feed_card_detail */
+.section_feed_detail.feed_card_text .container{
+    max-width: 720px;
+}
+.section_feed_detail.feed_card_text .feed_card_left{
+    display: none;
+}
+.section_feed_detail.feed_card_text .feed_card_right{
+    width: 100%;
+    flex: 0 0 auto;
+    overflow: visible;
+}
+.section_feed_detail.feed_card_text .card_body{
+    flex-direction: column;
+    position: static;
+    padding-bottom: 200px;
+    padding-top:0;
+    overflow: visible;
+}
+.section_feed_detail.feed_card_text .feed_line .profile_image{
+    display: none;
+}
+.section_feed_detail.feed_card_text .feed_card_detail .feed_content{
+    padding: 0;
+}
+
+
+
 @media (max-width: 992px) {
 
     .main{
@@ -283,4 +398,38 @@ ul.follow_list>li{
     .side{
         display: none;
     }
+
+    /*  */
+    .feed_card_detail{
+        flex-wrap: wrap;
+    }
+    .feed_card_detail .feed_card_left, .feed_card_detail .feed_card_right{
+        width: 100%;
+        /* max-width: 530px; */
+        min-width: auto;
+        margin: 0 auto;
+        flex : auto;
+    }
+    .feed_card_detail .card_body{
+        padding: 16px;
+        overflow:visible;
+        position: static;
+    }
+    .feed_card_detail .card_footer{
+        margin-top: 0;
+        position: static;
+    }
+
+    .feed_card_detail .feed-images{
+        padding-top:0;
+        background-color: #fff;
+        height: auto;
+    }
+    .feed_card_detail .feed-images> img{
+        position: static;
+    }
 }
+
+
+
+/*  */
