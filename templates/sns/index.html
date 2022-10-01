@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% block cssfile %}
+{% block extra_head %}
 <link rel="stylesheet" href="{% static "css/sns.css" %}">
 {% endblock %}
 
@@ -289,8 +289,5 @@
     </div>
 {% endblock %}
 
-{% block jsfile %}
-<script>
-
-</script>
+{% block extra_body %}
 {% endblock %}
