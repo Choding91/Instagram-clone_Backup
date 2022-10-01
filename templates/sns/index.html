@@ -1,3 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
+
+<!-- 추가head - meta, css 등 -->
+{% block extra_head %}
+<link rel="stylesheet" href="{% static "css/sns.css" %}">
+{% endblock %}
+
+<!-- 내용 Html -->
 {% block content %}
+{% endblock %}
+
+<!-- wrap 하단의 추가body - footer, JS 등 -->
+{% block extra_body %}
+<script src="{% static "js/main.js" %}"></script>
 {% endblock %}
