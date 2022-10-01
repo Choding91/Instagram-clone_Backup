@@ -8,8 +8,9 @@ def main(request):
     return render(request, 'sns/index.html', {'feeds': all_feed})
 
 # 특정 피드 - 현지
-def feed(request):
-    return render(request, 'sns/index.html')
+def feed_detail(request,id):
+    target_feed = Feed.objects.get(id=id)
+    return render(request, 'sns/feed.html',  {'feed': target_feed})
 
 # 피드 작성 - 현지
 def feed_create(request):
