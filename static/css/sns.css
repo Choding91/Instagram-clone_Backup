@@ -1,0 +1,435 @@
+
+.flex{
+    display: flex;
+}
+.flex-center{
+    justify-content: center;
+    align-items: center;
+}
+.flex.flex_column{
+    flex-direction: column;
+}
+.flex-item-right{
+    margin-left: auto;
+    margin-right: 0;
+}
+
+button.btn{
+    background-color: inherit;
+    border: 0;
+    padding:0;
+
+}
+button:focus{
+    border: 0;
+}
+
+
+/*  */
+.wrap{
+    background: rgb(250, 250, 250);
+    padding: 16px 0;
+}
+.main{
+    width: calc(100% - 400px);   
+}
+.side{
+    width:400px;
+    padding-left : 24px;
+}
+
+/* profile */
+.profile_image{
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    overflow: hidden;
+    position: relative;
+    max-width: 64px;
+    max-height: 64px;
+}
+.list_profile .profile_image{
+    max-width: 44px;
+    max-height: 44px;
+}
+.profile_image>img{
+    width: 100%;
+    object-fit: cover;
+}
+.profile_username{
+    font-weight: 600;
+    font-size: 16px;
+}
+.profile_bio, .profile_fullname{
+    color: #8e8e8e;
+}
+
+.list_profile{
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+.list_profile .profile_meta{
+    width: 100%;
+    padding-left: 16px;
+    line-height: 1.36;
+}
+.list_profile .profile_meta .sm_meta{
+    font-size: 0.85em;
+}
+
+
+/* story */
+.section_story{
+    background: #fff;
+    border: solid 1px rgb(219, 219, 219);
+    border-radius : 8px;
+    margin-bottom: 16px;
+    padding: 16px 0;
+}
+.story_list{
+    justify-content: flex-start;
+    padding: 0 16px; 
+}
+.story_card{
+    padding: 0 8px;
+}
+.story_card .profile_image{
+    margin-bottom: 8px;
+    margin-top: 4px;
+    border:solid 2px rgb(159, 30, 245)
+}
+.story_card .username{
+    font-size: 13px;
+    letter-spacing: .01em;
+    max-width: 74px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+
+/* section_feed */
+.feed_card{
+    background: #fff;
+    border: solid 1px rgb(219, 219, 219);
+    border-radius : 8px;
+    margin-bottom: 16px;
+    line-height: 1.26;
+    overflow: hidden;
+
+}
+.feed_card .card_header{
+    padding: 12px 16px;
+    margin-bottom: 0;
+    border-bottom: solid 1px  rgb(219, 219, 219);
+}
+
+.feed_card .feed-images>img{
+    width: 100%;
+}
+.feed_card .feed_btn{
+    margin-bottom: 8px;
+    padding: 0 8px;
+}
+.feed_card .feed_btn button{
+    padding: 8px;
+}
+.feed_card .feed_like{
+    padding: 0 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.feed_card .card_content{
+    width: 100%;
+    padding: 0 16px;
+    margin-bottom: 8px;
+    line-height: 1.36;
+
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-break: keep-all;
+    
+}
+.feed_card .card_content.more{
+    height: 100%;
+    overflow: visible;
+    display:block;
+    word-break:keep-all;
+}
+
+
+.feed_card .feed_author{
+    margin-right: 4px;
+}
+.feed_card .card_datetime{
+    padding: 0 16px;
+    color: #8e8e8e;
+    font-weight: 300;
+    margin-bottom: 8px;
+    font-size: 0.85em;
+    text-transform : uppercase
+}
+.feed_card .card_footer{
+    padding: 16px 0;
+    margin-top: 16px;
+    border-top: solid 1px  rgb(219, 219, 219);
+}
+.feed_card .form_feed_direct_comment{
+    display: flex;
+    align-items: center;
+    opacity: 0.5;
+    transition: 0.4s;
+}
+.feed_card .form_feed_direct_comment:focus-within{
+    opacity: 1;
+    transition: 0.4s;
+}
+.form_feed_direct_comment textarea{
+    width: 100%;
+    border: 0;
+    outline: 0;
+    resize: none;
+    vertical-align: middle;
+    padding-left: 16px;
+    height: 1.5em;
+    transition: 0.4s;
+}
+.form_feed_direct_comment button[type='submit']{
+    padding: 0 16px;
+    font-weight: 600;
+    color: #0095f6
+}
+
+
+/* feed_card_text */
+.feed_card_text .card_header{
+    border-bottom: 0
+}
+.feed_card_text .card_body{
+    display: flex;
+    flex-direction: column-reverse;
+}
+.feed_card_text .feed-images{
+    display: none;
+}
+.feed_card_text .card_body .feed_author{
+    display: none;
+}
+.feed_card_text .feed_like{
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+.feed_card_text .feed_btn{
+    margin-bottom: 0;
+}
+.feed_card_text .card_footer{
+    margin-top: 8px;
+}
+
+/* follow */
+.section_follow .my_profile{
+    margin-bottom: 16px;
+    margin-top: 20px;
+}
+.section_follow .my_profile .profile_image{
+    max-width: 64px;
+    max-height: 64px;
+}
+.suggestion_follow .title{
+    color: #8e8e8e;
+    padding: 8px 16px;
+    font-weight: 600;
+    margin: 16px 0;
+}
+ul.follow_list>li{
+    margin-bottom: 16px;
+}
+.btn_follow{
+    color: #0095f6;
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+/* feed more */
+#feedMoreModel button.btn_modal_feedmore{
+    width: 100%;
+    border-top: 1px solid rgb(219,219,219);
+    line-height: 1.5;
+    min-height: 56px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 0;
+}
+#feedMoreModel button.btn_modal_feedmore:first-child{
+    border-top:0;
+}
+#feedMoreModel button.btn_modal_feedmore.red{
+    color: #ed4956;
+    font-weight: 600;
+}
+
+
+/* .feed_card_detail */
+.section_feed_detail .container{
+    max-width: 1140px;;
+}
+.feed_card_left {
+    width: calc(100% - 400px);
+}
+.feed_card_detail .feed_card_right{
+    width: 400px;
+    min-width: 400px;
+    flex: 0 0 400px;
+    position: relative;
+    /* border-left : 1px solid rgb(219, 219, 219); */
+}
+
+.feed_card_detail  .feed-images{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-top: 100%;
+    background-color: #000;
+}
+.feed_card_detail .feed-images> img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.feed_card_detail .profile_image{
+    width: 32px;
+    height: 32px;
+}
+.feed_card_detail .card_body{
+    padding: 16px 16px 32px;
+    position: absolute;
+    min-height: 400px;
+    height: 100%;
+    max-height: calc(100% - 57px - 170px);
+
+    overflow: auto;
+    overscroll-behavior: none;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.feed_card_detail .card_body::-webkit-scrollbar {
+    display: none;
+}
+.feed_line, .feed_comment_line{
+    margin-bottom: 16px;
+}
+.feed_card_detail .card_content{
+    height: 100%;
+    overflow: visible;
+    display:block;
+    word-break:keep-all;
+}
+.feed_card_detail .sm_time{
+    color: #8e8e8e;
+    font-size: 0.7em;
+    text-transform:uppercase;
+}
+
+.feed_card_detail .card_footer{
+    position: absolute;
+    padding: 0;
+    bottom:0;
+    width: 100%;
+    background: #fff;
+}
+.feed_card_detail .comment_form_box{
+    margin-top: 16px;
+    border-top: solid 1px rgb(219, 219, 219);
+    padding: 16px 0 ;
+}
+.feed_card_detail .comment_form_box textarea:focus,.feed_card_detail .comment_form_box textarea:active{
+    transition: 0.4s;
+    height: 4em;
+}
+
+
+/* .feed_card_detail */
+.section_feed_detail.feed_card_text .container{
+    max-width: 720px;
+}
+.section_feed_detail.feed_card_text .feed_card_left{
+    display: none;
+}
+.section_feed_detail.feed_card_text .feed_card_right{
+    width: 100%;
+    flex: 0 0 auto;
+    overflow: visible;
+}
+.section_feed_detail.feed_card_text .card_body{
+    flex-direction: column;
+    position: static;
+    padding-bottom: 200px;
+    padding-top:0;
+    overflow: visible;
+}
+.section_feed_detail.feed_card_text .feed_line .profile_image{
+    display: none;
+}
+.section_feed_detail.feed_card_text .feed_card_detail .feed_content{
+    padding: 0;
+}
+
+
+
+@media (max-width: 992px) {
+
+    .main{
+        width: 100%;
+        max-width: 530px;
+        margin: auto;
+    }
+    .side{
+        display: none;
+    }
+
+    /*  */
+    .feed_card_detail{
+        flex-wrap: wrap;
+    }
+    .feed_card_detail .feed_card_left, .feed_card_detail .feed_card_right{
+        width: 100%;
+        /* max-width: 530px; */
+        min-width: auto;
+        margin: 0 auto;
+        flex : auto;
+    }
+    .feed_card_detail .card_body{
+        padding: 16px;
+        overflow:visible;
+        position: static;
+    }
+    .feed_card_detail .card_footer{
+        margin-top: 0;
+        position: static;
+    }
+
+    .feed_card_detail .feed-images{
+        padding-top:0;
+        background-color: #fff;
+        height: auto;
+    }
+    .feed_card_detail .feed-images> img{
+        position: static;
+    }
+}
+
+
+
+/*  */
