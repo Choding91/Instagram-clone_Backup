@@ -46,6 +46,7 @@
                             </div>
                             
                         </div>
+                        <!-- 피드 댓글 보여지는 공간 -->
                         <div class="feed_comment_list">
                             <div class="feed_comment_line flex">
                                 <div class="profile_image">
@@ -162,12 +163,15 @@
                             <div class="card_datetime">
                                 <time class="feed_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022">
                                     {{ feed.created_at|timesince }} AGO
+                                    {{ feed.id }}
                                 </time>
                             </div>
                         </div>
                         <div class="comment_form_box">
-                            <form class="form_feed_direct_comment">
-                                <textarea aria-label="Add a comment…" placeholder="Add a comment…" rows="1" class="input_direct_comment" autocomplete="off" autocorrect="off"></textarea>
+                            <!-- 피드 댓글 작성 Form -->
+                            <form class="form_feed_direct_comment" action="/sns/comment/write/{{ feed.id }}" method = "POST" >
+                                {% csrf_token %}
+                                <textarea aria-label="Add a comment…" placeholder="Add a comment…" rows="1" name='comment' class="input_direct_comment" autocomplete="off" autocorrect="off"></textarea>
                                 <button class="btn btn_comment_submit" type="submit">Post</button>
                             </form>
                         </div>
@@ -362,5 +366,8 @@
     </div>
 {% endblock %}
 {% block extra_body %}
+<script>
+    console.log("hi");
+</script>
 {% endblock %}
 xxxx
