@@ -5,7 +5,16 @@
 <link rel="stylesheet" href="{% static "css/sns.css" %}">
 {% endblock %}
 
+
 {% block content %}
+    <!-- Button trigger modal -->
+    <div class="form-row float-right">
+      <div class="col-lg-6-col-sm-12 text-lg-end text-center">
+        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      작성
+    </button>
+      </div> 
+    </div>
     <div class="container flex">
         <div class="main">
             <section class="section_story">
@@ -288,9 +297,32 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">게시글 작성</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" >
+            <!-- form 기본 : action: 내가 데이터를 보낼 URL / method: 데이터를 어떻게 보낼지(반드시 대문자) -->
+            <form action="/feed/create/" method="POST">
+                {% csrf_token %}
+              <textarea class="form-control" style="resize: none" type="text" name='my-content' id="my-content"></textarea> 
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-sm">post</button>
+                <button type="submit" class="btn btn-primary btn-sm">amend</button>
+              </div>
+            </form>      
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock %}
 
 {% block extra_body %}
 
 <script src="{% static 'js/feed.js' %}"></script>
 {% endblock %}
+
