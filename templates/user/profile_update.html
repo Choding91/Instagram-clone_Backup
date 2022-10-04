@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static "css/profile.css" %}">
+{% endblock %}
+
+{% block content %}
+<body>
+    <div class ="container">
+        <div class="profile_update_box">
+            <span><a href="/user/profile"><svg aria-label="닫기" class="_ab6-" color="#262626" fill="#262626" height="18" role="img" viewBox="0 0 24 24" width="18"><polyline fill="none" points="20.643 3.357 12 12 3.353 20.647" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></polyline><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="20.649" x2="3.354" y1="20.649" y2="3.354"></line></svg></a></span>
+            <div class="first">
+                <div class="first_img">
+                    <div class ="box">
+                        <img src="https://img.khan.co.kr/news/2019/11/29/l_2019112901003607500286631.jpg" alt="">
+                    </div>
+                </div>
+                <div>
+                    <div class="name_items">
+                        <h1>
+                            t_aime95
+                        </h1>
+                        <h2>
+                            <a href="#"><b>프로필 사진 바꾸기</b></a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="update_box">
+                <div class="name" style="margin: 0px 43px 0px 255px;">
+                    이름
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 10px">
+                        <input type ="text" placeholder="이름" style="width:350px; height:25px; font-size:14px;"></input>
+                    </div>
+                    <div style="font-size: 12px; margin-bottom: 7px">
+                        <p>사람들이 이름, 별명 또는 비즈니스 이름 등 회원님의 알려진 이름</p>
+                        을 사용하여 회원님의 계정을 찾을 수 있도록 도와주세요.
+                    </div>
+                    <div style="font-size: 12px">
+                        이름은 14일 안에 두 번만 변경할 수 있습니다.
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: center; margin-top: 20px">
+                <div style="margin: 0px 43px 0px 224px;">
+                    사용자 이름
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 10px">
+                        <input type ="text" placeholder="사용자 이름" style="width:350px;height:25px;font-size:14px;"></input>
+                    </div>
+                    <div style="font-size: 12px; margin-bottom: 7px">
+                        <p>대부분의 경우 이후 14일 동안 사용자 이름을 다시 변경할 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: center; margin-top: 20px">
+                <div style="margin: 0px 43px 0px 250px;">
+                    소개
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 10px">
+                        <input type ="text" placeholder="소개" style="width:350px;height:25px;font-size:14px;"></input>
+                    </div>
+                    <div style="font-size: 12px; margin-bottom: 7px">
+                        <p>0 / 150</p>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: center; margin-top: 20px">
+                <div style="margin: 0px 43px 0px 233px;">
+                    이메일
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 10px">
+                        <input type ="text" placeholder="이메일" style="width:350px;height:25px;font-size:14px;"></input>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: center; margin-top: 20px">
+                <div style="margin: 0px 43px 0px 216px;">
+                    전화번호
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 10px">
+                        <input type ="text" placeholder="전화번호" style="width:350px;height:25px;font-size:14px;"></input>
+                    </div>
+                    <div style="font-size: 12px; margin-bottom: 7px">
+                        <button>휴대폰 번호 확인</button>
+                    </div>
+                    <div style="margin-top: 50px">
+                        <button>제출</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
