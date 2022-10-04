@@ -1,7 +1,7 @@
 $('#button_signup').on('click', () => {
     let email = $('#floatingEmail').val();
     let name = $('#floatingName').val();
-    let user_id = $('#floatingUserId').val();
+    let username = $('#floatingUsername').val();
     let password = $('#floatingPassword').val();
 
     $.ajax({
@@ -9,7 +9,7 @@ $('#button_signup').on('click', () => {
         data: {
             email: email,
             password: password,
-            user_id: user_id,
+            username: username,
             name: name
         },
         method: "POST",

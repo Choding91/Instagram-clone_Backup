@@ -134,3 +134,10 @@ AUTH_USER_MODEL = 'user.User'
 SESSION_COOKIE_AGE = 600
 # request 확인 시 종료 시간 리셋
 SESSION_SAVE_EVERY_REQUEST = True
+
+# APIView 사용 시 REST_FRAMEWORK 자체 토큰 적용 필요
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
