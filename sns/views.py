@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Feed
 
 # 메인
@@ -12,7 +12,7 @@ def feed_detail(request,id):
     target_feed = Feed.objects.get(id=id)
     return render(request, 'sns/feed.html',  {'feed': target_feed})
 
-# 피드 작성 - 현지
+# 피드 작성 - 승주님
 def feed_create(request):
     return render(request, 'sns/index.html')
 
@@ -20,8 +20,10 @@ def feed_create(request):
 def feed_update(request):
     return render(request, 'sns/index.html')
 
-# 피드 삭제 - 승주님
-def feed_delete(request):
-    return render(request, 'sns/index.html')
+# 피드 삭제 - 현지님
+def feed_delete(request,id):
+    target_feed = Feed.objects.get(id=id)
+    target_feed.delete()
+    return redirect('/')
 
 # 댓글 - 상훈
