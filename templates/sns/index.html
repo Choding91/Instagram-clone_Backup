@@ -1,3 +1,49 @@
 {% extends 'base.html' %}
+
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static "css/sns.css" %}">
+{% endblock %}
+
+
+
 {% block content %}
+<!-- Button trigger modal -->
+<div class="form-row float-right">
+  <div class="col-lg-6-col-sm-12 text-lg-end text-center">
+    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  작성
+</button>
+  </div> 
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">게시글 작성</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" >
+        <from  method="POST">
+          {% csrf_token %}
+       <textarea class="form-control" style="resize: none" cols="100" name='my-content' id="my-content"></textarea> 
+       <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-sm" ><a href="sns/index.html">To shared</a></button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="location.href='/edit/{{update.pk}}/'">amend</button>
+      </div>
+      </from>      
+      </div>
+      
+    </div>
+  </div>
+</div>
+<!-- templates/tweet/home.html -->
+
+ 
+{% endblock %}
+
+{% block extra_body %}
 {% endblock %}
