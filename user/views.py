@@ -1,8 +1,9 @@
 from re import fullmatch
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 from .models import User
+from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.response import Response
 
@@ -84,10 +85,141 @@ class Findpassword(APIView):
 
         return Response(status=200, data=dict(message="해당 주소 '" + email + "'으로 로그인 링크를 보냈습니다."))
 
-def profile(request):
-    return render(request, 'user/profile.html')
+# def home(request):
+#     user = request.session.get('user')
+#     if user:
+#         return redirect(request, '/user/profile')
+#     else:
+#         return redirect('/signin')
+    
+class Profile(APIView):
+    def get(self, request):
+        user_id = User.objects.get(id=2)
+        email = request.session.get('email', None)
+        
+        if email is None:
+            return render(request, 'user/signin.html')
 
-def profile_update(request):
-    return render(request, 'user/profile_update.html')
+        user = User.objects.filter(email=email).first()
+        if user is None:
+            return render(request, 'user/signin.html')
+        
+        else:
+            return render(request, 'user/profile.html', {'user': user_id})
 
 
+class Profile_update(APIView):
+    def get(self, request):
+        email = request.session.get('email', None)
+        if email is None:
+            return render(request, 'user/signin.html')
+
+        user = User.objects.filter(email=email).first()
+        if user is None:
+            return render(request, 'user/signin.html')
+        
+        else:    
+            return render(request, 'user/profile_update.html')
+
+
+# class UpdateProfile(APIView):
+#     def post(self, request):
+#         email = request.session.get('email', None)
+#         if email is None:
+#             return render(request, 'user/signin.html')
+
+#         user = User.objects.filter(email=email).first()
+#         if user is None:
+#             return render(request, 'user/signin.html')
+
+#         file = request.FILES['file']
+#         if file is None:
+#             return Response(status=500)
+
+#         uuid_name = uuid4().hex
+#         save_path = os.path.join(MEDIA_ROOT, uuid_name)
+#         with open(save_path, 'wb+') as destination:
+#             for chunk in file.chunks():
+#                 destination.write(chunk)
+
+#         user.thumbnail = uuid_name
+#         user.save()
+
+#         return Response(status=200, data=dict(uuid=uuid_name))
+
+
+# class Profile(APIView):
+#     def get(self, request):
+#         email = request.session.get('email', None)
+#         if email is None:
+#             return render(request, 'user/signin.html')
+
+#         user = User.objects.filter(email=email).first()
+#         if user is None:
+#             return render(request, 'user/signin.html')
+
+#         feed_object_list = Feed.objects.filter(email=email).order_by('-id')
+#         feed_list = []
+#         row_feed_list = []
+#         feed_count = feed_object_list.count()
+#         for feed in feed_object_list:
+#             like_count = FeedLike.objects.filter(feed_id=feed.id, is_like=True).count()
+#             is_like = FeedLike.objects.filter(feed_id=feed.id, is_like=True, email=email).exists()
+#             reply_count = Reply.objects.filter(feed_id=feed.id).count()
+#             row_feed_list.append(dict(
+#                 id=feed.id,
+#                 profile_image=feed.profile_image,
+#                 username=feed.username,
+#                 image=feed.image,
+#                 content=feed.content,
+#                 like_count=like_count,
+#                 is_like=is_like,
+#                 reply_count=reply_count
+#             ))
+
+#             if len(row_feed_list) == 3:
+#                 feed_list.append(dict(row_feed_list=row_feed_list))
+#                 row_feed_list = []
+
+#         if len(row_feed_list) > 0:
+#             feed_list.append(dict(row_feed_list=row_feed_list))
+
+#         following_count = Follow.objects.filter(follower=email, is_live=True).count()
+#         follower_count = Follow.objects.filter(following=email, is_live=True).count()
+
+#         bookmark_list = Bookmark.objects.filter(email=email, is_bookmarked=True).order_by('-id')
+#         bookmark_feed_list = []
+#         row_bookmark_feed_list = []
+#         for bookmark in bookmark_list:
+#             feed = Feed.objects.filter(id=bookmark.feed_id).first()
+#             if feed is None:
+#                 continue
+#             like_count = FeedLike.objects.filter(feed_id=feed.id, is_like=True).count()
+#             is_like = FeedLike.objects.filter(feed_id=feed.id, is_like=True, email=email).exists()
+#             reply_count = Reply.objects.filter(feed_id=feed.id).count()
+#             row_bookmark_feed_list.append(dict(
+#                 id=feed.id,
+#                 profile_image=feed.profile_image,
+#                 user_id=feed.user_id,
+#                 image=feed.image,
+#                 content=feed.content,
+#                 like_count=like_count,
+#                 is_like=is_like,
+#                 reply_count=reply_count
+#             ))
+
+#             if len(row_bookmark_feed_list) == 3:
+#                 bookmark_feed_list.append(dict(row_bookmark_feed_list=row_bookmark_feed_list))
+#                 row_bookmark_feed_list = []
+
+#         if len(row_bookmark_feed_list) > 0:
+#             bookmark_feed_list.append(dict(row_bookmark_feed_list=row_bookmark_feed_list))
+
+#         return render(request,
+#                       'chostagram/profile.html',
+#                       context=dict(feed_list=feed_list,
+#                                    bookmark_feed_list=bookmark_feed_list,
+#                                    feed_count=feed_count,
+#                                    following_count=following_count,
+#                                    follower_count=follower_count,
+#                                    user=user))

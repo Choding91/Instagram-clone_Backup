@@ -160,16 +160,17 @@
 }
 
 .post_box > div{
-    width: 440px;
-    height: 440px;
+    width: 430px;
+    height: 430px;
     border: none;
+    display: flex;
     position: relative;
 }
 
 .post_box > div > a > img{
     width: 90%;
     height: 90%;
-    padding-left: 22px;
+    /* padding-left: 22px; */
     display: table;
     object-fit: cover;
     position: absolute;
@@ -179,7 +180,7 @@
     width: 90%;
     height: 90%;
     position: absolute;
-    left: 22px;
+    /* left: 10px; */
     background: rgba(0,0,0,0.5);
     opacity: 0;
 }
