@@ -30,10 +30,10 @@ def feed_create(request):
         return redirect ( '/') 
 
     elif request.method == 'POST':
-        my_auther= "승주"
+        my_author= "승주"
 
         new_feed = Feed()
-        new_feed.auther = my_auther
+        new_feed.author = my_author
         new_feed.content = request.POST.get('my-content')
         new_feed.save()
 
@@ -46,18 +46,15 @@ def feed_create(request):
 def feed_update(request, id):
     feed = Feed.objects.get(id=id)
     if request.method == 'POST':
-                update_feed = feed()
-                update_feed.auther= update_feed
-                update_feed= request.POST.get('my-content')
-                
-                update_feed.save()
-                return render(request, 'index.html')
+        update_feed = feed()
+        update_feed.auther= update_feed
+        update_feed= request.POST.get('my-content')
+        
+        update_feed.save()
+        return render(request, 'index.html')
     else:
        return redirect ('/') 
 
-# # 피드 삭제 - 승주님
-# def feed_delete(request):
-#     return render(request, '/index.html')
 
 # # 댓글 -상훈
 def write_comment(request, id):

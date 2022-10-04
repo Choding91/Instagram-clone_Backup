@@ -44,10 +44,14 @@ header nav ul.navbar_menu{
     -webkit-box-align: center;
     align-items: center;
 }
-header nav ul.navbar_menu > li > a{
+header nav ul.navbar_menu > li > a, header nav ul.navbar_menu > li > button{
     display: block;
     line-height: 20px;
     padding: 20px 20px;
+}
+header nav ul.navbar_menu > li > button.btn:hover{
+    background: transparent;
+    border-color: transparent;
 }
 
 
