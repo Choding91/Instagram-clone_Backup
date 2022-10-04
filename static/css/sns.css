@@ -23,13 +23,13 @@ button.btn{
 button:focus{
     border: 0;
 }
+a.btn:active, a.btn:focus, a.btn:hover{
+    /* border:0 !important; */
+    border-color: transparent !important;
+}
 
 
 /*  */
-.wrap{
-    background: rgb(250, 250, 250);
-    padding: 16px 0;
-}
 .main{
     width: calc(100% - 400px);   
 }
@@ -385,6 +385,9 @@ ul.follow_list>li{
 .section_feed_detail.feed_card_text .feed_card_detail .feed_content{
     padding: 0;
 }
+
+
+/* modalFeedForm */
 
 
 
