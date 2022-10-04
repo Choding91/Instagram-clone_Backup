@@ -35,12 +35,6 @@ def feed_delete(request):
 
 # 댓글 - 상훈
 
-def detail_comment(request, id):
-    my_feed = Feed.objects.get(id=id)
-    feed_comment = FeedComment.objects.filter(feed_id=id).order_by('-created_at')
-    return render(request,'sns/commentdetail.html',{'sns':my_feed,'comment':feed_comment})
-
-
 def write_comment(request, id):
     if request.method == 'POST':
         # request 데이터 받기
@@ -55,10 +49,20 @@ def write_comment(request, id):
         new_fc.feed = form_feed
         new_fc.save()
 
+
         return redirect(f'/feed/{id}')
 
 def delete_comment(request, id):
-    comment = FeedComment.objects.get(id=id)
-    current_feed = comment.feed.id
-    comment.delete()
-    return redirect('/sns/'+str(current_feed))
+    # 댓글 삭제 기능
+    # 1. 내가 클릭한 댓글(FeedComment) 삭제
+    # 1-1. 내가 클릭한 댓글(FeedComment)? id값으로 구분
+    # 1-2. id값으로 댓글을 찾기
+    # 1-3. 찾은 댓글 삭제
+    # Model.objects.get("검색할 필드이름"="검색값") 
+    
+    delete_comment = FeedComment.objects.get(id=id) # 게시글댓글의 객체를 가져온다. 고유값(id)기준으로.
+    current_feed_id = delete_comment.feed.id # 삭제할 댓글의 게시글의 고유값(id)
+    delete_comment.delete() #댓글 삭제
+    
+    # 2. 삭제 끝냈으니깐 원래 있는 게시글(current_feed_id: 게시글 id값) 로 이동
+    return redirect(f'/feed/{current_feed_id}')

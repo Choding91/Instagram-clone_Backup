@@ -60,6 +60,9 @@
                                         </p>
                                         <p>
                                             <time class="feed_comment_time sm_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022"> {{comment.created_at|timesince}}</time>
+                                            <a href="/sns/comment/delete/{{ comment.id }}">
+                                                <span class="badge bg-danger">삭제</span>
+                                            </a>
                                         </p>
                                     </div>
                                 </div>
