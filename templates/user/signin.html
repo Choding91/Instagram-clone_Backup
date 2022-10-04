@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link href="static/css/signin.css" rel="stylesheet" type="text/css"/>
+
+    <!-- favicon -->
+    <link rel="icon" href="/static/img/instagram.png">
+    <link rel="instagram icon" href="/static/img/instagram.png">
+
+    <!-- jquery 사용하기 위해 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+            crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+    -->
+
+    <title>로그인 · OB Instagram</title>
+</head>
+
+<body>
+<section>
+    <div class="warp">
+        <div class="signin_top">
+            <div class="signin_img">
+                <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png">
+            </div>
+            <div class="mb-2 form-floating floating_form">
+                <input type="email" class="floating_input form-control" id="floatingEmail" placeholder="#">
+                <label for="floatingEmail" class="floating_label">이메일 주소</label>
+            </div>
+            <div class="mb-3 form-floating floating_form">
+                <input type="password" class="floating_input form-control" id="floatingPassword" placeholder="#">
+                <label for="floatingPassword" class="floating_label">비밀번호</label>
+            </div>
+            <div class="mb-3 floating_form">
+                <button id="button_signin" class="btn btn-primary" type="button"> 로그인</button>
+            </div>
+            <div class="signin_or">
+                <hr class="hr_left">
+                또는
+                <hr class="hr_right">
+            </div>
+            <div class="signin_check">
+                <a class="a_1" href="{% url 'findpassword' %}">비밀번호를 잊으셨나요?</a>
+            </div>
+        </div>
+
+        <div class="signin_bottom">
+            <div>
+                계정이 없으신가요? <a class="a_2" href="{% url 'signup' %}">가입하기</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="static/js/signin.js" type="text/javascript" ></script>
+
+<footer>
+    <p>Meta&nbsp;&nbsp;
+        소개&nbsp;&nbsp;
+        블로그&nbsp;&nbsp;
+        채용 정보&nbsp;&nbsp;
+        도움말&nbsp;&nbsp;
+        API&nbsp;&nbsp;
+        개인정보처리방침&nbsp;&nbsp;
+        약관&nbsp;&nbsp;
+        인기 계정&nbsp;&nbsp;
+        해시태그&nbsp;&nbsp;
+        위치&nbsp;&nbsp;
+        OB_Instagram Lite&nbsp;&nbsp;
+        연락처 업로드 & 비사용자
+    </p>
+    <p>한국어 ᐯ &nbsp;&nbsp; © 2022 Instagram from B5_OB</p>
+</footer>
+
+</body>
+</html>
