@@ -1,20 +1,20 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render,redirect
 from .models import Feed
 
 
 
 # # 메인
 def main(request):
-  return render(request,'sns/index.html')
-        
-           
+    all_feed = Feed.objects.all().order_by('-created_at')
+    return render(request, 'sns/index.html', {'feeds': all_feed})
 
-# # 전체 피드 - 현지
-# def feed(request):
-#      return render(request, 'sns/index.html')
+# 특정 피드 - 현지
+def feed_detail(request,id):
+    target_feed = Feed.objects.get(id=id)
+    return render(request, 'sns/feed.html',  {'feed': target_feed})
 
-# 게시글 작성
+# 피드 작성 - 승주님
 def feed_create(request):
     # if request.method == 'GET':
     #     return render(request, 'sns/index.html')  
@@ -26,9 +26,6 @@ def feed_create(request):
     # #         return redirect('/sign-in')
 
     
-    # 받은 데이터로 게시글 작성하기
-    # 1. 데이터를 받기 = request.전달방법.get("데이터이름")
-    # 2. 게시글 작서하기
     if request.method == 'GET':
         return redirect ( '/') 
 
@@ -77,8 +74,14 @@ def write_comment(request, id):
         new_fc.feed = form_feed
         new_fc.save()
 
-
         return redirect(f'/feed/{id}')
+
+# 피드 삭제 - 현지님
+def feed_delete(request,id):
+    target_feed = Feed.objects.get(id=id)
+    target_feed.delete()
+    return redirect('/')
+
 
 def delete_comment(request, id):
     # 댓글 삭제 기능
