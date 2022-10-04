@@ -26,10 +26,6 @@ button:focus{
 
 
 /*  */
-.wrap{
-    background: rgb(250, 250, 250);
-    padding: 16px 0;
-}
 .main{
     width: calc(100% - 400px);   
 }
