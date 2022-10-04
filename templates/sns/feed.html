@@ -47,90 +47,24 @@
                             
                         </div>
                         <!-- 피드 댓글 보여지는 공간 -->
-                        <div class="feed_comment_list">
-                            <div class="feed_comment_line flex">
-                                <div class="profile_image">
-                                    <img src="https://intermusicakorea.com/common/img/default_profile.png">
+                        <div class="feed_comment_list">                            
+                            {% for comment in comments %}
+                                <div class="feed_comment_line flex">
+                                    <div class="profile_image">
+                                        <img src="https://intermusicakorea.com/common/img/default_profile.png">
+                                    </div>
+                                    <div class="feed_comment_content card_content">
+                                        <p>
+                                            <span class="feed_author profile_username"><a href="#">{{ comment.author }}</a></span>
+                                                    {{comment.content}}
+                                        </p>
+                                        <p>
+                                            <time class="feed_comment_time sm_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022"> {{comment.created_at|timesince}}</time>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="feed_comment_content card_content">
-                                    <p>
-                                        <span class="feed_author profile_username"><a href="#">LeeHyunji</a></span>
-                                            이 밤 그날의 반딧불을 당신의
-                                            창 가까이 보낼게요
-                                            사랑한다는 말이에요
-                                    </p>
-                                    <p><time class="feed_comment_time sm_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022">
-                                        {{ feed.created_at|timesince }}
-                                    </time></p>
-                                </div>
-                            </div>
-                            <div class="feed_comment_line flex">
-                                <div class="profile_image">
-                                    <img src="https://intermusicakorea.com/common/img/default_profile.png">
-                                </div>
-                                <div class="feed_comment_content card_content">
-                                    <p>
-                                        <span class="feed_author profile_username"><a href="#">LeeHyunji</a></span>
-                                            이 밤 그날의 반딧불을 당신의
-                                            창 가까이 보낼게요
-                                            사랑한다는 말이에요
-                                    </p>
-                                    <p><time class="feed_comment_time sm_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022">
-                                        {{ feed.created_at|timesince }}
-                                    </time></p>
-                                </div>
-                            </div>
-
-                            <div class="feed_comment_line flex">
-                                <div class="profile_image">
-                                    <img src="https://intermusicakorea.com/common/img/default_profile.png">
-                                </div>
-                                <div class="feed_comment_content card_content">
-                                    <p>
-                                        <span class="feed_author profile_username"><a href="#">LeeHyunji</a></span>
-                                            이 밤 그날의 반딧불을 당신의
-                                            창 가까이 보낼게요
-                                            사랑한다는 말이에요
-                                    </p>
-                                    <p><time class="feed_comment_time sm_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022">
-                                        {{ feed.created_at|timesince }}
-                                    </time></p>
-                                </div>
-                            </div>
-
-                            <div class="feed_comment_line flex">
-                                <div class="profile_image">
-                                    <img src="https://intermusicakorea.com/common/img/default_profile.png">
-                                </div>
-                                <div class="feed_comment_content card_content">
-                                    <p>
-                                        <span class="feed_author profile_username"><a href="#">LeeHyunji</a></span>
-                                            이 밤 그날의 반딧불을 당신의
-                                            창 가까이 보낼게요
-                                            사랑한다는 말이에요
-                                    </p>
-                                    <p><time class="feed_comment_time sm_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022">
-                                        {{ feed.created_at|timesince }}
-                                    </time></p>
-                                </div>
-                            </div>
-
-                            <div class="feed_comment_line flex">
-                                <div class="profile_image">
-                                    <img src="https://intermusicakorea.com/common/img/default_profile.png">
-                                </div>
-                                <div class="feed_comment_content card_content">
-                                    <p>
-                                        <span class="feed_author profile_username"><a href="#">LeeHyunji</a></span>
-                                            이 밤 그날의 반딧불을 당신의
-                                            창 가까이 보낼게요
-                                            사랑한다는 말이에요
-                                    </p>
-                                    <p><time class="feed_comment_time sm_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022">
-                                        {{ feed.created_at|timesince }}
-                                    </time></p>
-                                </div>
-                            </div>
+                            {% endfor %}
+                            
                         </div>
                     </div>
                     <div class="card_footer">

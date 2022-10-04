@@ -11,7 +11,15 @@ def main(request):
 # 특정 피드 - 현지
 def feed_detail(request,id):
     target_feed = Feed.objects.get(id=id)
-    return render(request, 'sns/feed.html',  {'feed': target_feed})
+
+    # FeedComment 모델을 객체화 해서 filter(검색)한다.
+    # Model.objects.filter("검색할 필드이름"="검색값")
+    # 1. 피드 각각에 작성된 댓글을 찾고싶은것이다.
+    # 2. FeedComment에서 피드를 id 값으로 찾기
+    each_comment = FeedComment.objects.filter(feed_id=id)
+
+    # M-V-T : 모델에서 데이터 가져와서 View에서 데이터를 처리하고 Template에서 데이터를 뿌려준다.
+    return render(request, 'sns/feed.html',  {'feed': target_feed , 'comments':each_comment })
 
 # 피드 작성 - 현지
 def feed_create(request):
