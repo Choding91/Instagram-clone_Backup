@@ -46,90 +46,28 @@
                             </div>
                             
                         </div>
-                        <div class="feed_comment_list">
-                            <div class="feed_comment_line flex">
-                                <div class="profile_image">
-                                    <img src="https://intermusicakorea.com/common/img/default_profile.png">
+                        <!-- 피드 댓글 보여지는 공간 -->
+                        <div class="feed_comment_list">                            
+                            {% for comment in comments %}
+                                <div class="feed_comment_line flex">
+                                    <div class="profile_image">
+                                        <img src="https://intermusicakorea.com/common/img/default_profile.png">
+                                    </div>
+                                    <div class="feed_comment_content card_content">
+                                        <p>
+                                            <span class="feed_author profile_username"><a href="#">{{ comment.author }}</a></span>
+                                                    {{comment.content}}
+                                        </p>
+                                        <p>
+                                            <time class="feed_comment_time sm_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022"> {{comment.created_at|timesince}}</time>
+                                            <a href="/sns/comment/delete/{{ comment.id }}">
+                                                <span class="badge bg-danger">삭제</span>
+                                            </a>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="feed_comment_content card_content">
-                                    <p>
-                                        <span class="feed_author profile_username"><a href="#">LeeHyunji</a></span>
-                                            이 밤 그날의 반딧불을 당신의
-                                            창 가까이 보낼게요
-                                            사랑한다는 말이에요
-                                    </p>
-                                    <p><time class="feed_comment_time sm_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022">
-                                        {{ feed.created_at|timesince }}
-                                    </time></p>
-                                </div>
-                            </div>
-                            <div class="feed_comment_line flex">
-                                <div class="profile_image">
-                                    <img src="https://intermusicakorea.com/common/img/default_profile.png">
-                                </div>
-                                <div class="feed_comment_content card_content">
-                                    <p>
-                                        <span class="feed_author profile_username"><a href="#">LeeHyunji</a></span>
-                                            이 밤 그날의 반딧불을 당신의
-                                            창 가까이 보낼게요
-                                            사랑한다는 말이에요
-                                    </p>
-                                    <p><time class="feed_comment_time sm_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022">
-                                        {{ feed.created_at|timesince }}
-                                    </time></p>
-                                </div>
-                            </div>
-
-                            <div class="feed_comment_line flex">
-                                <div class="profile_image">
-                                    <img src="https://intermusicakorea.com/common/img/default_profile.png">
-                                </div>
-                                <div class="feed_comment_content card_content">
-                                    <p>
-                                        <span class="feed_author profile_username"><a href="#">LeeHyunji</a></span>
-                                            이 밤 그날의 반딧불을 당신의
-                                            창 가까이 보낼게요
-                                            사랑한다는 말이에요
-                                    </p>
-                                    <p><time class="feed_comment_time sm_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022">
-                                        {{ feed.created_at|timesince }}
-                                    </time></p>
-                                </div>
-                            </div>
-
-                            <div class="feed_comment_line flex">
-                                <div class="profile_image">
-                                    <img src="https://intermusicakorea.com/common/img/default_profile.png">
-                                </div>
-                                <div class="feed_comment_content card_content">
-                                    <p>
-                                        <span class="feed_author profile_username"><a href="#">LeeHyunji</a></span>
-                                            이 밤 그날의 반딧불을 당신의
-                                            창 가까이 보낼게요
-                                            사랑한다는 말이에요
-                                    </p>
-                                    <p><time class="feed_comment_time sm_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022">
-                                        {{ feed.created_at|timesince }}
-                                    </time></p>
-                                </div>
-                            </div>
-
-                            <div class="feed_comment_line flex">
-                                <div class="profile_image">
-                                    <img src="https://intermusicakorea.com/common/img/default_profile.png">
-                                </div>
-                                <div class="feed_comment_content card_content">
-                                    <p>
-                                        <span class="feed_author profile_username"><a href="#">LeeHyunji</a></span>
-                                            이 밤 그날의 반딧불을 당신의
-                                            창 가까이 보낼게요
-                                            사랑한다는 말이에요
-                                    </p>
-                                    <p><time class="feed_comment_time sm_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022">
-                                        {{ feed.created_at|timesince }}
-                                    </time></p>
-                                </div>
-                            </div>
+                            {% endfor %}
+                            
                         </div>
                     </div>
                     <div class="card_footer">
@@ -162,12 +100,15 @@
                             <div class="card_datetime">
                                 <time class="feed_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022">
                                     {{ feed.created_at|timesince }} AGO
+                                    {{ feed.id }}
                                 </time>
                             </div>
                         </div>
                         <div class="comment_form_box">
-                            <form class="form_feed_direct_comment">
-                                <textarea aria-label="Add a comment…" placeholder="Add a comment…" rows="1" class="input_direct_comment" autocomplete="off" autocorrect="off"></textarea>
+                            <!-- 피드 댓글 작성 Form -->
+                            <form class="form_feed_direct_comment" action="/sns/comment/write/{{ feed.id }}" method = "POST" >
+                                {% csrf_token %}
+                                <textarea aria-label="Add a comment…" placeholder="Add a comment…" rows="1" name='comment' class="input_direct_comment" autocomplete="off" autocorrect="off"></textarea>
                                 <button class="btn btn_comment_submit" type="submit">Post</button>
                             </form>
                         </div>
@@ -367,4 +308,3 @@
 {% block extra_body %}
 <script src="{% static 'js/feed.js' %}"></script>
 {% endblock %}
-xxxx
