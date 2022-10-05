@@ -281,7 +281,20 @@ ul.follow_list>li{
 }
 
 /* feed more */
-#feedMoreModel button.btn_modal_feedmore{
+.moreModel .modal-body{
+    text-align: center;
+    border-bottom: 1px solid rgb(219, 219, 219);
+    padding: 32px 0;
+}
+.moreModel .modal_title{
+    font-size: 1.25em;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.moreModel .modal-footer{
+    border:0;
+}
+.moreModel button.btn_modal_feedmore, .moreModel button.btn_modal_feedmore:hover{
     width: 100%;
     border-top: 1px solid rgb(219,219,219);
     line-height: 1.5;
@@ -289,11 +302,12 @@ ul.follow_list>li{
     text-align: center;
     vertical-align: middle;
     border-radius: 0;
+    margin:0;
 }
-#feedMoreModel button.btn_modal_feedmore:first-child{
+.moreModel button.btn_modal_feedmore:first-child{
     border-top:0;
 }
-#feedMoreModel button.btn_modal_feedmore.red{
+.moreModel button.btn_modal_feedmore.red{
     color: #ed4956;
     font-weight: 600;
 }
