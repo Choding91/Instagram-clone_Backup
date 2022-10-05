@@ -48,7 +48,7 @@
                     {{ user.bio }}
                 </div>
                 <div>
-                    <a href="{{ user.username }}">{{ user.website }}</a>
+                    <a href="{{ user.website }}">{{ user.website }}</a>
                 </div>
 
             </div>
@@ -63,30 +63,26 @@
             </div>
         </div>
         <div class="post_box">
-            <div>
-                <a href="#">
-                    <img src="https://img.khan.co.kr/news/2019/11/29/l_2019112901003607500286631.jpg" alt="">
-                    <div class="icons">
-                        <div>
-                            <svg aria-label="댓글 달기" class="_ab6-" color="white" fill="white" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path></svg>
-                            <span class="commnet-count">34 comments</span>
+            {% for feed in my_feed %}
+            <div class="col-md-12 mb-2">
+                <a href="/feed/{{ feed.id }}">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h5 class="mt-0">{{ feed.content }}</h5>
+                                </div>
+                                <div style="text-align: right">
+                                    <span style="font-size: small">{{ feed.created_at|timesince }} 전</span>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </a>
             </div>
+            {% endfor %}
         </div>
     </div>
-    <script>
-        function show() {
-          document.querySelector(".background").className = "background show";
-        }
-  
-        function close() {
-          document.querySelector(".background").className = "background";
-        }
-  
-        document.querySelector("#show").addEventListener("click", show);
-        document.querySelector("#close").addEventListener("click", close);
-    </script>
 </body>
 {% endblock %}

@@ -3,6 +3,7 @@ from re import fullmatch
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 from .models import User
+from sns.models import Feed
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.response import Response
 from django.contrib.auth.decorators import login_required
@@ -90,9 +91,12 @@ class Findpassword(APIView):
 @login_required
 def profile(request):
     if request.method == 'GET':
-        user = request.user.is_authenticated
+        
+        user = request.user
+        my_feed = Feed.objects.filter(author=user.username)
+        
         if user:
-            return render(request, 'user/profile.html')
+            return render(request, 'user/profile.html', {'user': user, 'my_feed': my_feed})
         else:
             return redirect('/')
 
