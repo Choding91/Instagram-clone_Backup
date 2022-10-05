@@ -48,6 +48,7 @@ class Signup(APIView):
         # 회원가입 정규식 체크
         REGEX_EMAIL = '([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+'
         REGEX_PASSWORD = '^(?=.*[\d])(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[\w\d!@#$%^&*()]{8,16}$'
+        REGEX_USERNAME = '^([a-z0-9]{4,12})$'
 
         if User.objects.filter(email=email).exists():
             return Response(status=500, data=dict(message="해당 이메일 주소가 존재합니다."))
@@ -57,6 +58,8 @@ class Signup(APIView):
             return Response(status=500, data=dict(message="이메일 형식을 확인하세요."))        
         elif not fullmatch(REGEX_PASSWORD, password):
             return Response(status=500, data=dict(message="비밀번호는 8~16자리의 영문, 숫자, 특수문자 조합만 가능합니다."))
+        elif not fullmatch(REGEX_USERNAME, username):
+            return Response(status=500, data=dict(message="사용자 이름은 최대 4~12자리의 영문, 숫자만 가능합니다."))
         else:
             make_password(password)
             User.objects.create(password=make_password(password),
