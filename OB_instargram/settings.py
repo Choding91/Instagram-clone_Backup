@@ -138,3 +138,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     )
 }
+
+#Message framework 사용시 지정
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
