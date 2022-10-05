@@ -75,11 +75,12 @@ def feed_delete(request,id):
 
 
 # 댓글 - 상훈
+@login_required
 def write_comment(request, id):
     if request.method == 'POST':
         # request 데이터 받기
         form_content = request.POST.get("comment")
-        form_author = "손상훈"
+        form_author = request.user
         form_feed =  Feed.objects.get(id = id) 
 
         # DB저장
@@ -91,9 +92,28 @@ def write_comment(request, id):
 
         return redirect(f'/feed/{id}')
 
+
+@login_required
 def delete_comment(request, id): 
-    delete_comment = FeedComment.objects.get(id=id) 
+
+    delete_comment = FeedComment.objects.get(id=id)
     current_feed_id = delete_comment.feed.id
-    delete_comment.delete()
+    # 삭제 권한
+    # 1. 댓글을 작성한 사람이 현재 로그인 사람이면
+    #  1-1. 댓글의 작성자(delete_comment.author)와 현재 로그인한 사람(request.user)가 같으면
+    # 2. 관리자 계정으로 로그인했을때
+    #   2-1. 지금 로그인한 계정(request.user)가 관리자인지(is_staff)
+    if delete_comment.author == request.user.username:
+        #삭제 가능
+        delete_comment.delete()
+        return redirect(f'/feed/{current_feed_id}')
     
-    return redirect(f'/feed/{current_feed_id}')
+    elif request.user.is_staff:
+        delete_comment.delete()
+        messages.add_message(request,messages.SUCCESS,'관리자권한으로 댓글을 삭제했습니다.')
+        return redirect(f'/feed/{current_feed_id}')
+    else:
+        #삭제 안됨
+        messages.add_message(request,messages.ERROR,'댓글을 삭제할 수 없습니다.')
+        return redirect(f'/feed/{current_feed_id}')
+       
