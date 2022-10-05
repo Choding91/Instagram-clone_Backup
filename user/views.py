@@ -3,9 +3,9 @@ from re import fullmatch
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 from .models import User
-from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.response import Response
+from .forms import CustomUserChangeForm
 
 
 class Signin(APIView):
@@ -94,7 +94,7 @@ class Findpassword(APIView):
     
 class Profile(APIView):
     def get(self, request):
-        user_id = User.objects.get(id=2)
+        user = User.objects.all()
         email = request.session.get('email', None)
         
         if email is None:
@@ -105,11 +105,12 @@ class Profile(APIView):
             return render(request, 'user/signin.html')
         
         else:
-            return render(request, 'user/profile.html', {'user': user_id})
+            return render(request, 'user/profile.html', context=dict(user=user))
 
 
 class Profile_update(APIView):
     def get(self, request):
+        user = User.objects.all()
         email = request.session.get('email', None)
         if email is None:
             return render(request, 'user/signin.html')
@@ -119,7 +120,40 @@ class Profile_update(APIView):
             return render(request, 'user/signin.html')
         
         else:    
-            return render(request, 'user/profile_update.html')
+            return render(request, 'user/profile_update.html', context=dict(user=user))
+        
+    def post(self, request):
+        
+        name = request.data.get('name')
+        username = request.data.get('username')
+        website = request.data.get('website')
+        bio = request.data.get('bio')
+        email = request.data.get('email')
+        phone = request.data.get('phone')
+        
+        REGEX_EMAIL = '([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+'
+        REGEX_PHONE = '010-\d{3,4}-\d{4}'
+
+        if name == '':
+            return Response(status=500, data=dict(message="변경할 이름을 입력해주세요."))
+        elif username == '':
+            return Response(status=500, data=dict(message="변경할 사용자 이름을 입력해주세요."))
+        elif website == '':
+            return Response(status=500, data=dict(message="변경할 웹사이트 주소를 입력해주세요."))
+        elif bio == '':
+            return Response(status=500, data=dict(message="변경할 정보를 입력해주세요."))
+        elif not fullmatch(REGEX_EMAIL, email):
+            return Response(status=500, data=dict(message="이메일 형식을 확인하세요."))
+        elif not fullmatch(REGEX_PHONE, phone):
+            return Response(status=500, data=dict(message="전화번호 형식을 확인하세요. '010-xxxx-xxxx'"))
+        else:
+            User.objects.update(name=name,
+                                username=username,
+                                website=website,
+                                bio=bio,
+                                email=email,
+                                phone=phone)
+            return Response(status=200, data=dict(message="정보 수정에 성공했습니다."))
 
 
 # class UpdateProfile(APIView):
