@@ -44,16 +44,18 @@ header nav ul.navbar_menu{
     -webkit-box-align: center;
     align-items: center;
 }
-header nav ul.navbar_menu > li > a, header nav ul.navbar_menu > li > button{
+header nav ul.navbar_menu > li > a, header nav ul.navbar_menu > li > button, header nav ul.navbar_menu > li .dropdown>button{
     display: block;
     line-height: 20px;
     padding: 20px 20px;
 }
-header nav ul.navbar_menu > li > button.btn:hover{
+header nav ul.navbar_menu > li > button.btn:hover, header nav ul.navbar_menu > li .dropdown>button:hover, header nav ul.navbar_menu > li .dropdown>button:active, header nav ul.navbar_menu > li .dropdown>button:focus-visible{
     background: transparent;
     border-color: transparent;
 }
-
+header nav ul.navbar_menu > li .dropdown-toggle::after{
+    display: none;
+}
 
 .sample_profile{
     width: 24px;
@@ -74,7 +76,7 @@ footer {
 
 
 @media (max-width: 992px) {
-    header nav ul.navbar_menu > li > a{
+    header nav ul.navbar_menu > li > a, header nav ul.navbar_menu > li > button, header nav ul.navbar_menu > li .dropdown>button {
         padding: 20px 10px;
     }
 }
