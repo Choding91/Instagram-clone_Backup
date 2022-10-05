@@ -101,9 +101,10 @@
                             </div>
                         </div>
                         <div class="card_footer">
-                            <form class="form_feed_direct_comment">
-                                <textarea aria-label="Add a comment…" placeholder="Add a comment…" rows="1" class="input_direct_comment" autocomplete="off" autocorrect="off"></textarea>
-                                <button class="btn btn_comment_submit" type="submit">Post</button>
+                            <form class="form_feed_direct_comment" action="/sns/comment/write/{{ feed.id }}" method = "POST" >
+                                {% csrf_token %}
+                                <textarea aria-label="Add a comment…" placeholder="Add a comment…" rows="1" name='comment' class="input_direct_comment" autocomplete="off" autocorrect="off"></textarea>
+                                <button class="btn_writebutton">작성</button>
                             </form>
                         </div>
                     </div>
