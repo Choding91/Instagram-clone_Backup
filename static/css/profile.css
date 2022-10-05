@@ -1,0 +1,305 @@
+/* --profile-- */
+.my_profile{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+.img_area{
+    padding: 0px 130px;
+}
+
+.profile_image{
+    width:  175px;
+    height: 175px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile_image > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile_user{
+    padding-left: 50px
+}
+
+.user_content{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 35px;
+}
+
+.user_content > h1{
+    font-size :30px;
+    margin-right: 20px
+}
+
+.user_content > button{
+    margin-right: 10px;
+    border: 2px solid rgba(50,50,50,0.1);
+    background-color: rgba(0,0,0,0);
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.post_area{
+    margin-bottom: 50px;
+    font-size: 17px
+}
+
+.post_area > span{
+    margin-right: 30px;
+}
+
+.post_area > button {
+    border: none;
+    background-color: rgba(0,0,0,0);
+}
+
+.bio_area{
+    margin-bottom: 20px;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+
+    z-index: -1;
+    opacity: 0;
+}
+
+.follow_btn{
+    border: none;
+    background: #ffffff;
+}
+
+.follow_btn > span{
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.show {
+    opacity: 1;
+    z-index: 1000;
+    transition: all 0.5s;
+}
+
+.show_2 {
+    opacity: 1;
+    z-index: 1000;
+    transition: all 0.5s;
+}
+
+.window {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, -40%);
+    border-radius: 5%;
+    padding: 10px;
+}
+
+.show .popup {
+    transform: translate(-50%, -50%);
+    transition: all 0.5s;
+}
+
+.show_2 .popup {
+    transform: translate(-50%, -50%);
+    transition: all 0.5s;
+}
+
+.close_box{
+    float: right;
+}
+
+.modal_tytle{
+    display: flex;
+    justify-content: center;
+    border-bottom: solid 2px rgba(50,50,50,0.1);
+}
+
+.post_nav{
+    border-top: solid 2px rgba(50,50,50,0.1);
+}
+
+.post_nav_items{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.post_nav_items > div{
+    margin: 0px 40px;
+}
+
+.post_box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    text-align: center;
+}
+
+.post_box > div{
+    width: 430px;
+    height: 430px;
+    border: none;
+    display: flex;
+    position: relative;
+}
+
+.post_box > div > a > img{
+    width: 90%;
+    height: 90%;
+    /* padding-left: 22px; */
+    display: table;
+    object-fit: cover;
+    position: absolute;
+}
+
+.icons{
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    /* left: 10px; */
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+}
+
+.icons > div {
+    padding: 186px 0;
+    color: white;
+}
+
+.post_box > div:hover .icons{
+    opacity: 1;
+}
+
+/* --profile_update-- */
+.profile_update_box{
+    border: solid 2px rgba(50,50,50,0.1);
+    padding: 15px;
+    margin-top: 10px;
+    align-items: stretch;
+}
+
+.profile_update_box > span{
+    float: right;
+}
+
+.first {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.first_img{
+    padding: 0px 35px;
+}
+
+.box {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: black;
+    overflow: hidden;
+}
+
+.box > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.name_items{
+    margin-bottom: 5px;
+}
+
+.name_items > h1{
+    font-size :24px;
+}
+
+.name_items > h2{
+    margin-top: 5px;
+    color: #0095F6;
+    font-weight: bold;
+}
+
+.update_box{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.name_interval{
+    margin: 0px 43px 0px 255px;
+}
+
+.text_list{
+    display: flex;
+    flex-direction: column;
+}
+
+.input_box{
+    width:350px;
+    height:25px;
+    font-size:14px;
+}
+
+.set_input{
+    display: flex;
+    flex-direction: column;
+}
+
+.input_interval{
+    margin-bottom: 10px;
+}
+
+.profile_font {
+    font-size: 12px;
+    margin-bottom: 7px"
+}
+
+.mar_name{
+    margin: 0px 43px 0px 224px;
+}
+
+.mar_username{
+    margin: 0px 43px 0px 216px;
+}
+
+.mar_bio{
+    margin: 0px 43px 0px 246px;
+}
+
+.mar_email{
+    margin: 0px 43px 0px 233px;
+}
+
+.mar_phone{
+    margin: 0px 43px 0px 216px;
+}

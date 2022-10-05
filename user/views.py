@@ -1,11 +1,13 @@
 from re import fullmatch
-from django.shortcuts import render
+
+from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 from .models import User
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.response import Response
+from django.contrib.auth.decorators import login_required
 from django.contrib import auth
-
+from django.views.decorators.csrf import csrf_exempt
 
 class Signin(APIView):
     def get(self, request):
@@ -15,7 +17,6 @@ class Signin(APIView):
         email = request.data.get('email', None)
         password = request.data.get('password', None)
 
-        
         user = User.objects.filter(email=email).first()
 
         if email == '':
@@ -27,7 +28,7 @@ class Signin(APIView):
         elif check_password(password, user.password) is False:
             return Response(status=500, data=dict(message='비밀번호가 잘못되었습니다.'))
         else:
-            me = auth.authenticate(request, username=user.username, password=password)
+            me = auth.authenticate(request, username=user, password=password)
             auth.login(request, me)
             request.session['loginCheck'] = True
             request.session['email'] = user.email
@@ -85,3 +86,56 @@ class Findpassword(APIView):
             return Response(status=500, data=dict(message='이메일 주소를 확인하세요.'))
         else:
             return Response(status=200, data=dict(message="해당 주소 '" + email + "'으로 로그인 링크를 보냈습니다."))
+
+@login_required
+def profile(request):
+    if request.method == 'GET':
+        user = request.user.is_authenticated
+        if user:
+            return render(request, 'user/profile.html')
+        else:
+            return redirect('/')
+
+@login_required
+@csrf_exempt    
+def profile_update(request):
+    if request.method == 'GET':
+        user = request.user.is_authenticated
+        if user:
+            return render(request, 'user/profile_update.html')
+        else:
+            return redirect('/')
+    
+    elif request.method == 'POST':
+        name = request.POST.get('name', '')
+        username = request.POST.get('username', '')
+        website = request.POST.get('website', '')
+        bio = request.POST.get('bio', '')
+        email = request.POST.get('email', '')
+        phone = request.POST.get('phone', '')
+        
+        REGEX_EMAIL = '([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+'
+        REGEX_PHONE = '010-\d{3,4}-\d{4}'
+
+        if name == '':
+            return render(request, 'user/profile_update.html', {'error': '이름을 입력해주세요!'})
+        elif username == '':
+            return render(request, 'user/profile_update.html', {'error': '사용자 이름을 입력해주세요!'})
+        elif website == '':
+            return render(request, 'user/profile_update.html', {'error': '웹사이트 주소를 입력해주세요!'})
+        elif bio == '':
+            return render(request, 'user/profile_update.html', {'error': '소개를 입력해주세요!'})
+        elif not fullmatch(REGEX_EMAIL, email):
+            return render(request, 'user/profile_update.html', {'error': '이메일을 입력해주세요!'})
+        elif not fullmatch(REGEX_PHONE, phone):
+            return render(request, 'user/profile_update.html', {'error': '전화번호을 입력해주세요!'})
+        else:
+            user_instance = request.user
+            user_instance.name = name
+            user_instance.username = username
+            user_instance.website = website
+            user_instance.bio = bio
+            user_instance.email = email
+            user_instance.phone = phone
+            user_instance.save()
+            return redirect('/profile')
