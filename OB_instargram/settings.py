@@ -126,3 +126,18 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# User 모델 전역 사용
+AUTH_USER_MODEL = 'user.User'
+
+# 세션 자동 종료 시간(s)
+SESSION_COOKIE_AGE = 600
+# request 확인 시 종료 시간 리셋
+SESSION_SAVE_EVERY_REQUEST = True
+
+# APIView 사용 시 REST_FRAMEWORK 자체 토큰 적용 필요
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
