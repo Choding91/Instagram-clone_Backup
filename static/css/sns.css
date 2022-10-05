@@ -202,6 +202,28 @@ a.btn:active, a.btn:focus, a.btn:hover{
     height: 1.5em;
     transition: 0.4s;
 }
+
+.btn_deletecomment{   
+        border-radius: 25px;
+        background-color: #eee;
+        cursor: pointer;
+        outline: none;
+        box-shadow: 1px 4px 0 rgb(0,0,0,0.5);
+}
+.btn_writebutton{
+        border-radius: 25px;
+        display:block;
+        width:75px;
+        height:40px; 
+        line-height:40px; 
+        border:1px #3399dd solid;;
+        background-color:#66aaff;  
+        text-align:center; 
+        cursor: pointer;  
+        margin: auto;
+        color:#333; 
+        
+}
 .form_feed_direct_comment button[type='submit']{
     padding: 0 16px;
     font-weight: 600;
@@ -220,7 +242,7 @@ a.btn:active, a.btn:focus, a.btn:hover{
 .feed_card_text .feed-images{
     display: none;
 }
-.feed_card_text .card_body .feed_author{
+.feed_card_text .card_body .feed_line .feed_author{
     display: none;
 }
 .feed_card_text .feed_like{

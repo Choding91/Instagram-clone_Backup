@@ -61,7 +61,7 @@
                                         <p>
                                             <time class="feed_comment_time sm_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022"> {{comment.created_at|timesince}}</time>
                                             <a href="/sns/comment/delete/{{ comment.id }}">
-                                                <span class="badge bg-danger">삭제</span>
+                                                <button class="btn_deletecomment">  삭제 </button>
                                             </a>
                                         </p>
                                     </div>
@@ -109,7 +109,7 @@
                             <form class="form_feed_direct_comment" action="/sns/comment/write/{{ feed.id }}" method = "POST" >
                                 {% csrf_token %}
                                 <textarea aria-label="Add a comment…" placeholder="Add a comment…" rows="1" name='comment' class="input_direct_comment" autocomplete="off" autocorrect="off"></textarea>
-                                <button class="btn btn_comment_submit" type="submit">Post</button>
+                                <button class="btn_writebutton">작성</button>
                             </form>
                         </div>
                     </div>
