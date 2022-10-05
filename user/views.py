@@ -5,7 +5,9 @@ from rest_framework.views import APIView
 from .models import User
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.response import Response
-from .forms import CustomUserChangeForm
+from django.contrib.auth.decorators import login_required
+from django.contrib import auth
+from django.views.decorators.csrf import csrf_exempt
 
 
 class Signin(APIView):
@@ -27,6 +29,8 @@ class Signin(APIView):
         elif check_password(password, user.password) is False:
             return Response(status=500, data=dict(message='비밀번호가 잘못되었습니다.'))
         else:
+            me = auth.authenticate(request, username=user, password=password)
+            auth.login(request, me)
             request.session['loginCheck'] = True
             request.session['email'] = user.email
             return Response(status=200, data=dict(message='로그인에 성공했습니다.'))
@@ -85,75 +89,131 @@ class Findpassword(APIView):
 
         return Response(status=200, data=dict(message="해당 주소 '" + email + "'으로 로그인 링크를 보냈습니다."))
 
-# def home(request):
-#     user = request.session.get('user')
-#     if user:
-#         return redirect(request, '/user/profile')
-#     else:
-#         return redirect('/signin')
-    
-class Profile(APIView):
-    def get(self, request):
-        user = User.objects.all()
-        email = request.session.get('email', None)
-        
-        if email is None:
-            return render(request, 'user/signin.html')
-
-        user = User.objects.filter(email=email).first()
-        if user is None:
-            return render(request, 'user/signin.html')
-        
+@login_required
+def profile(request):
+    if request.method == 'GET':
+        user = request.user.is_authenticated
+        if user:
+            return render(request, 'user/profile.html')
         else:
-            return render(request, 'user/profile.html', context=dict(user=user))
+            return redirect('/')
 
-
-class Profile_update(APIView):
-    def get(self, request):
-        user = User.objects.all()
-        email = request.session.get('email', None)
-        if email is None:
-            return render(request, 'user/signin.html')
-
-        user = User.objects.filter(email=email).first()
-        if user is None:
-            return render(request, 'user/signin.html')
-        
-        else:    
-            return render(request, 'user/profile_update.html', context=dict(user=user))
-        
-    def post(self, request):
-        
-        name = request.data.get('name')
-        username = request.data.get('username')
-        website = request.data.get('website')
-        bio = request.data.get('bio')
-        email = request.data.get('email')
-        phone = request.data.get('phone')
+@login_required
+@csrf_exempt    
+def profile_update(request):
+    if request.method == 'GET':
+        user = request.user.is_authenticated
+        if user:
+            return render(request, 'user/profile_update.html')
+        else:
+            return redirect('/')
+    
+    elif request.method == 'POST':
+        name = request.POST.get('name', '')
+        username = request.POST.get('username', '')
+        website = request.POST.get('website', '')
+        bio = request.POST.get('bio', '')
+        email = request.POST.get('email', '')
+        phone = request.POST.get('phone', '')
         
         REGEX_EMAIL = '([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+'
         REGEX_PHONE = '010-\d{3,4}-\d{4}'
 
         if name == '':
-            return Response(status=500, data=dict(message="변경할 이름을 입력해주세요."))
+            return render(request, 'user/profile_update.html', {'error': '이름을 입력해주세요!'})
         elif username == '':
-            return Response(status=500, data=dict(message="변경할 사용자 이름을 입력해주세요."))
+            return render(request, 'user/profile_update.html', {'error': '사용자 이름을 입력해주세요!'})
         elif website == '':
-            return Response(status=500, data=dict(message="변경할 웹사이트 주소를 입력해주세요."))
+            return render(request, 'user/profile_update.html', {'error': '웹사이트 주소를 입력해주세요!'})
         elif bio == '':
-            return Response(status=500, data=dict(message="변경할 정보를 입력해주세요."))
+            return render(request, 'user/profile_update.html', {'error': '소개를 입력해주세요!'})
         elif not fullmatch(REGEX_EMAIL, email):
-            return Response(status=500, data=dict(message="이메일 형식을 확인하세요."))
+            return render(request, 'user/profile_update.html', {'error': '이메일을 입력해주세요!'})
         elif not fullmatch(REGEX_PHONE, phone):
-            return Response(status=500, data=dict(message="전화번호 형식을 확인하세요. '010-xxxx-xxxx'"))
+            return render(request, 'user/profile_update.html', {'error': '전화번호을 입력해주세요!'})
         else:
-            User.objects.update(name=name,
-                                username=username,
-                                website=website,
-                                bio=bio,
-                                email=email,
-                                phone=phone)
-            return Response(status=200, data=dict(message="정보 수정에 성공했습니다."))
+            user_instance = request.user
+            user_instance.name = name
+            user_instance.username = username
+            user_instance.website = website
+            user_instance.bio = bio
+            user_instance.email = email
+            user_instance.phone = phone
+            user_instance.save()
+            return redirect('/profile')
+        
+    
+        
+    
+# @login_required
+# def profile_update(request):
+#     if request == 'GET':
+#         user
+    
+    
+# class Profile(APIView):
+#     def get(self, request):
+#         user = User.objects.all()
+#         email = request.session.get('email', None)
+        
+#         if email is None:
+#             return render(request, 'user/signin.html')
+
+#         user = User.objects.filter(email=email).first()
+#         if user is None:
+#             return render(request, 'user/signin.html')
+        
+#         else:
+#             return render(request, 'user/profile.html', context=dict(user=user))
+          
+# class Profile_update(APIView):
+#     def get(self, request):
+#         user = User.objects.all()
+#         email = request.session.get('email', None)
+#         if email is None:
+#             return render(request, 'user/signin.html')
+
+#         user = User.objects.filter(email=email).first()
+#         if user is None:
+#             return render(request, 'user/signin.html')
+        
+#         else:    
+#             return render(request, 'user/profile_update.html', context=dict(user=user))
+        
+#     def post(self, request):
+        
+#         name = request.data.get('name')
+#         username = request.data.get('username')
+#         website = request.data.get('website')
+#         bio = request.data.get('bio')
+#         email = request.data.get('email')
+#         phone = request.data.get('phone')
+        
+#         REGEX_EMAIL = '([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+'
+#         REGEX_PHONE = '010-\d{3,4}-\d{4}'
+
+#         if name == '':
+#             return Response(status=500, data=dict(message="변경할 이름을 입력해주세요."))
+#         elif username == '':
+#             return Response(status=500, data=dict(message="변경할 사용자 이름을 입력해주세요."))
+#         elif website == '':
+#             return Response(status=500, data=dict(message="변경할 웹사이트 주소를 입력해주세요."))
+#         elif bio == '':
+#             return Response(status=500, data=dict(message="변경할 정보를 입력해주세요."))
+#         elif not fullmatch(REGEX_EMAIL, email):
+#             return Response(status=500, data=dict(message="이메일 형식을 확인하세요."))
+#         elif not fullmatch(REGEX_PHONE, phone):
+#             return Response(status=500, data=dict(message="전화번호 형식을 확인하세요. '010-xxxx-xxxx'"))
+#         else:
+#             user_instance = request.user
+#             user_instance.name = name
+#             user_instance.username = username
+#             user_instance.website = website
+#             user_instance.bio = bio
+#             user_instance.email = email
+#             user_instance.phone = phone
+#             user_instance.save()
+#             return Response(status=200, data=dict(message="정보 수정에 성공했습니다."))
 
 
 # class UpdateProfile(APIView):

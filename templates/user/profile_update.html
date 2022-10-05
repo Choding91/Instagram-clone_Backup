@@ -9,7 +9,7 @@
 
     <div class ="container">
         <div class="profile_update_box">
-            <span><a href="/user/profile"><svg aria-label="닫기" class="_ab6-" color="#262626" fill="#262626" height="18" role="img" viewBox="0 0 24 24" width="18"><polyline fill="none" points="20.643 3.357 12 12 3.353 20.647" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></polyline><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="20.649" x2="3.354" y1="20.649" y2="3.354"></line></svg></a></span>
+            <span><a href="/profile"><svg aria-label="닫기" class="_ab6-" color="#262626" fill="#262626" height="18" role="img" viewBox="0 0 24 24" width="18"><polyline fill="none" points="20.643 3.357 12 12 3.353 20.647" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></polyline><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="20.649" x2="3.354" y1="20.649" y2="3.354"></line></svg></a></span>
             <div class="first">
                 <div class="first_img">
                     <div class ="box">
@@ -27,83 +27,90 @@
                     </div>
                 </div>
             </div>
-            <div class="update_box">
-                <div class="name" style="margin: 0px 43px 0px 255px;">
-                    이름
-                </div>
-                <div style="display: flex; flex-direction: column;">
-                    <div style="margin-bottom: 10px">
-                        <input id="floatingName" type ="text" placeholder="이름" style="width:350px; height:25px; font-size:14px;"></input>
+            <form method="post" action="/profile_update/">
+                {% csrf_token %}
+                <div class="update_box">
+                    <div class="name_interval">
+                        이름
                     </div>
-                    <div style="font-size: 12px; margin-bottom: 7px">
-                        <p>사람들이 이름, 별명 또는 비즈니스 이름 등 회원님의 알려진 이름</p>
-                        을 사용하여 회원님의 계정을 찾을 수 있도록 도와주세요.
-                    </div>
-                    <div style="font-size: 12px">
-                        이름은 14일 안에 두 번만 변경할 수 있습니다.
-                    </div>
-                </div>
-            </div>
-            <div style="display: flex; flex-direction: row; justify-content: center; margin-top: 20px">
-                <div style="margin: 0px 43px 0px 224px;">
-                    사용자 이름
-                </div>
-                <div style="display: flex; flex-direction: column;">
-                    <div style="margin-bottom: 10px">
-                        <input id="floatingUsername"type ="text" placeholder="사용자 이름" style="width:350px;height:25px;font-size:14px;"></input>
-                    </div>
-                    <div style="font-size: 12px; margin-bottom: 7px">
-                        <p>대부분의 경우 이후 14일 동안 사용자 이름을 다시 변경할 수 있습니다.</p>
+                    <div class="set_input">
+                        <div class="input_interval">
+                            <input id="name" name="name" type ="text" placeholder="이름" style="width:350px; height:25px; font-size:14px;"></input>
+                        </div>
+                        <div class="profile_font">
+                            <p>사람들이 이름, 별명 또는 비즈니스 이름 등 회원님의 알려진 이름</p>
+                            <p>을 사용하여 회원님의 계정을 찾을 수 있도록 도와주세요.</p>
+                            이름은 14일 안에 두 번만 변경할 수 있습니다.
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div style="display: flex; flex-direction: row; justify-content: center; margin-top: 20px">
-                <div style="margin: 0px 43px 0px 216px;">
-                    웹사이트
-                </div>
-                <div style="display: flex; flex-direction: column;">
-                    <div style="margin-bottom: 10px">
-                        <input id="floatingWebsite" type ="text" placeholder="웹사이트" style="width:350px;height:25px;font-size:14px;"></input>
+                <div class="update_box">
+                    <div class="mar_name">
+                        사용자 이름
+                    </div>
+                    <div class="set_input">
+                        <div class="input_interval">
+                            <input id="username" name="username" type ="text" placeholder="사용자 이름" style="width:350px;height:25px;font-size:14px;"></input>
+                        </div>
+                        <div class="profile_font">
+                            <p>대부분의 경우 이후 14일 동안 사용자 이름을 다시 변경할 수 있습니다.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div style="display: flex; flex-direction: row; justify-content: center; margin-top: 20px">
-                <div style="margin: 0px 43px 0px 246px;">
-                    소개
-                </div>
-                <div style="display: flex; flex-direction: column;">
-                    <div style="margin-bottom: 10px">
-                        <textarea id="floatingBio" class="form-control" id="exampleFormControlTextarea1" rows="3" style="width:350px;height:100px;font-size:14px; border: 1px solid gray"></textarea>
+                <div class="update_box">
+                    <div class="mar_username">
+                        웹사이트
                     </div>
-                    <div style="font-size: 12px; margin-bottom: 7px">
-                        <p>0 / 150</p>
+                    <div class="set_input">
+                        <div class="input_interval">
+                            <input id="website" name="website" type ="text" placeholder="웹사이트" style="width:350px;height:25px;font-size:14px;"></input>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div style="display: flex; flex-direction: row; justify-content: center; margin-top: 20px">
-                <div style="margin: 0px 43px 0px 233px;">
-                    이메일
-                </div>
-                <div style="display: flex; flex-direction: column;">
-                    <div style="margin-bottom: 10px">
-                        <input id="floatingEmail" type ="text" placeholder="이메일" style="width:350px;height:25px;font-size:14px;"></input>
+                <div class="update_box">
+                    <div class="mar_bio">
+                        소개
+                    </div>
+                    <div class="set_input">
+                        <div class="input_interval">
+                            <textarea id="bio" name="bio" class="form-control" id="exampleFormControlTextarea1" rows="3" style="width:350px;height:100px;font-size:14px; border: 1px solid gray"></textarea>
+                        </div>
+                        <div class="profile_font">
+                            <p>0 / 150</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div style="display: flex; flex-direction: row; justify-content: center; margin-top: 20px">
-                <div style="margin: 0px 43px 0px 216px;">
-                    전화번호
-                </div>
-                <div style="display: flex; flex-direction: column;">
-                    <div style="margin-bottom: 10px">
-                        <input id="floatingPhone" type ="text" placeholder="전화번호" style="width:350px;height:25px;font-size:14px;"></input>
+                <div class="update_box">
+                    <div class="mar_email">
+                        이메일
                     </div>
-                    <div style="font-size: 12px; margin-bottom: 7px">
-                        <button id="submit" type="button" class="btn btn-primary">제출</button>
-                    </div>
+                    <div class="set_input">
+                        <div class="input_interval">
+                            <input id="email" name="email" type ="text" placeholder="이메일" style="width:350px;height:25px;font-size:14px;"></input>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="update_box">
+                    <div class="mar_phone">
+                        전화번호
+                    </div>
+                    <div class="set_input">
+                        <div class="input_interval">
+                            <input id="phone" name="phone" type ="text" placeholder="전화번호" style="width:350px;height:25px;font-size:14px;"></input>
+                        </div>
+                        <hr>
+                        {% if error %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endif %}
+                        <div class="profile_font">
+                            <button id="submit" type="submit" class="btn btn-primary">제출</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
