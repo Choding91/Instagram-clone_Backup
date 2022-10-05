@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                             <div class="card_btn">
-                                <button type="button" class="btn btn_card_more" data-notifyid="{{feed.id}}" data-bs-toggle="modal" data-bs-target="#feedMoreModel">
+                                <button type="button" class="btn btn_card_more" data-notifyid="{{ feed.id }}" data-bs-toggle="modal" {% if user.username == feed.author %}data-auth="true"{% else %}data-auth="false"{% endif %} data-bs-target="#feedMoreModel">
                                     <svg aria-label="More options" class="_ab6-" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
                                 </button>
                             </div>
@@ -212,12 +212,12 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="feedMoreModel" tabindex="-1" aria-labelledby="feedMoreModelLabel" aria-hidden="true">
+    <div class="modal fade moreModel" id="feedMoreModel" tabindex="-1" aria-labelledby="feedMoreModelLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-body flex flex_column p-0">
-                    <button type="button" class="btn btn_modal_feedmore btn_delete red" data-bs-dismiss="modal" aria-label="Delete">Delete</button>
-                    <button type="button" class="btn btn_modal_feedmore btn_Edit red" data-bs-toggle="modal" data-bs-target="#staticBackdrop" aria-label="Edit">Edit</button>
+                <div class="modal-footer flex flex_column p-0">
+                    <button type="button" class="btn btn_modal_feedmore btn_edit red" data-bs-toggle="modal" data-bs-target="#staticBackdrop" aria-label="Edit">Edit</button>
+                    <button type="button" class="btn btn_modal_feedmore btn_deletemodel red" data-bs-toggle="modal" data-bs-target="#deleteModal" aria-label="Edit">Delete</button>                    
                     <button type="button" class="btn btn_modal_feedmore btn_unfollow red" data-bs-dismiss="modal" aria-label="Unfollow">Unfollow</button>
                     <button type="button" class="btn btn_modal_feedmore btn_like" data-bs-dismiss="modal" aria-label="Add to favorites">Add to favorites</button>
                     <button type="button" class="btn btn_modal_feedmore btn_goFeed" data-bs-dismiss="modal" aria-label="Go to post">Go to post</button>
@@ -226,9 +226,29 @@
             </div>
         </div>
     </div>
+    <div class="modal fade moreModel" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body flex flex_column">
+                    <h5 class="modal_title">Delete Post?</h5>
+                    <p>Are you sure you want to delete this post?</p>
+                </div>
+                <div class="modal-footer flex flex_column p-0">
+                    <button type="button" class="btn btn_modal_feedmore btn_delete red" data-bs-dismiss="modal" aria-label="Delete">Delete</button>
+                    <button type="button" class="btn btn_modal_feedmore btn_close" data-bs-dismiss="modal" aria-label="Cancle">Cancle</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block extra_body %}
-
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                alert("{{ message }}");
+            </script>
+        {% endfor %}
+    {% endif %}
 <script src="{% static 'js/feed.js' %}"></script>
 {% endblock %}
