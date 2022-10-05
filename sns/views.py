@@ -44,17 +44,26 @@ def feed_create(request):
 # 피드 수정 - 승주님       
 @login_required
 def feed_update(request, id):
-    feed = Feed.objects.get(id=id)
-    if request.method == 'POST':
-        update_feed = feed()
-        update_feed.auther= update_feed
-        update_feed= request.POST.get('my-content')
-        
-        update_feed.save()
-        
-        return render(request, 'index.html')
-    else:
-       return redirect ('/') 
+    if request.method == 'GET':
+        return redirect ('/') 
+
+    elif request.method == 'POST':
+        update_feed = Feed.objects.get(id=id)
+        update_feed_content = request.POST.get('my-content')
+
+        if update_feed.author == request.user.username:
+            update_feed.content = update_feed_content
+            update_feed.save();
+            return redirect(f'/feed/{id}')
+        elif request.user.is_staff: 
+            update_feed.content = update_feed_content
+            update_feed.save();
+            messages.add_message(request,messages.SUCCESS,'관리자 권한으로 수정되었습니다.')
+            return redirect(f'/feed/{id}')
+        else:
+            messages.add_message(request,messages.ERROR,'게시글 수정을 할 수 없습니다.')
+            return redirect(f'/feed/{id}')
+
 
 # 피드 삭제 - 현지님
 @login_required
