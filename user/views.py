@@ -1,5 +1,4 @@
 from re import fullmatch
-
 from django.shortcuts import render
 from rest_framework.views import APIView
 from .models import User
@@ -74,12 +73,11 @@ class Findpassword(APIView):
 
     def post(self, request):
         email = request.data.get('email', None)
+        user = User.objects.filter(email=email).first()
 
         if email == '':
             return Response(status=500, data=dict(message='이메일 주소를 입력해 주세요.'))
-
-        user = User.objects.filter(email=email).first()
-        if user is None:
+        elif user is None:
             return Response(status=500, data=dict(message='이메일 주소를 확인하세요.'))
-
-        return Response(status=200, data=dict(message="해당 주소 '" + email + "'으로 로그인 링크를 보냈습니다."))
+        else:
+            return Response(status=200, data=dict(message="해당 주소 '" + email + "'으로 로그인 링크를 보냈습니다."))
