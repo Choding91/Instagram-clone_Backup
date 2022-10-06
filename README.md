@@ -28,23 +28,28 @@
 ## DB설계
 ![image](https://user-images.githubusercontent.com/12287842/194216665-f545faad-4a50-4b9a-9a5b-0927634aee13.png)
 
-#API설계
-| 앱 | 기능 | 메소드 | URL | request | response |
-| --- | --- | --- | --- | --- | --- |
-| 로그인 회원가입 | 로그인 | POST | /signin | {‘email’ : email, ‘pw’ : pw} | redirect(“/”) |
-|  | 회원가입 | POST | /signup | {‘email’: email,‘name’ : name,‘username’ : username,‘pw’ : pw} | redirect(“/signin”) |
-|  | 로그아웃 | GET | /logout |  | redirect(“/signin”) |
-|  | 비밀번호 변경 | POST | /findpassword | {‘email’:email} | redirect(“/signin”) |
-|  | 프로필 | GET | /profile_update |  | UserModel |
-|  | 프로필 수정 | POST | /profile | {‘name’ : name,‘username’ : username,‘website’: website,‘bio’:bio,‘email’: email,‘phone’:phone, | redirect(“/profile”)|
-| SNS | 전체 게시글 조회 | GET | / |  | FeedModel |
-|  | 상세 게시글 조회 | GET | /feed/<id> | {‘id’ : id} | FeedModel |
-|  | 게시글 작성 | POST | /feed/create/ | {‘content : content} | redirect (f'/feed/{new_feed_id}') |
-|  | 게시글 수정 | POST | /feed/update/<id> | {‘id’ : id, ‘content : content} | redirect(f'/feed/{id}') |
-|  | 게시글 삭제 | GET | /feed/delete/<id> | {‘id’ : id} | redirect(“feed/<feed_id>”) |
-|  | 댓글 조회 | GET | /comment/<feed_id> | {‘post_id’:post_id} | FeedCommentModel |
-|  | 댓글 작성 | POST | /comment/create/<feed_id> | {comment : “댓글 내용”} | redirect(f'/feed/{id}') |
-|  | 댓글 삭제 | GET | /comment/delete/<id> | {‘id’ : id} | (f'/feed/{current_feed_id}') |
+## API설계
+### User 앱 
+| 기능 | 메소드 | URL | request | response |
+| --- | --- | --- | --- | --- |
+| 로그인 | POST | /signin | {‘email’ : email, ‘pw’ : pw} | redirect(“/”) |
+| 회원가입 | POST | /signup | {‘email’: email,‘name’ : name,‘username’ : username,‘pw’ : pw} | redirect(“/signin”) |
+| 로그아웃 | GET | /logout |  | redirect(“/signin”) |
+| 비밀번호 변경 | POST | /findpassword | {‘email’:email} | redirect(“/signin”) |
+| 프로필 | GET | /profile_update |  | UserModel |
+| 프로필 수정 | POST | /profile | {‘name’ : name,‘username’ : username,‘website’: website,‘bio’:bio,‘email’: email,‘phone’:phone, | redirect(“/profile”)|
+
+### SNS 앱
+| 기능 | 메소드 | URL | request | response |
+| --- | --- | --- | --- | --- |
+| 전체 게시글 조회 | GET | / |  | FeedModel |
+| 상세 게시글 조회 | GET | /feed/<id> | {‘id’ : id} | FeedModel |
+| 게시글 작성 | POST | /feed/create/ | {‘content : content} | redirect (f'/feed/{new_feed_id}') |
+| 게시글 수정 | POST | /feed/update/<id> | {‘id’ : id, ‘content : content} | redirect(f'/feed/{id}') |
+| 게시글 삭제 | GET | /feed/delete/<id> | {‘id’ : id} | redirect(“feed/<feed_id>”) |
+| 댓글 조회 | GET | /comment/<feed_id> | {‘post_id’:post_id} | FeedCommentModel |
+| 댓글 작성 | POST | /comment/create/<feed_id> | {comment : “댓글 내용”} | redirect(f'/feed/{id}') |
+| 댓글 삭제 | GET | /comment/delete/<id> | {‘id’ : id} | (f'/feed/{current_feed_id}') |
 
 
 ## 프로젝트 결과 시연연상
