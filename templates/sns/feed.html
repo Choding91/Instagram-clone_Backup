@@ -8,7 +8,7 @@
 {% block content %}
     <section class="section_feed_detail feed_card_text">
         <div class="container">
-            <div class="feed_card feed_card_detail flex">
+            <div class="feed_card feed_card_detail flex" id="feed_{{feed.id}}">
                 <div class="feed_card_left">
                     <div class="feed-images">
                         <img src="https://s3.ap-northeast-2.amazonaws.com/blog.spartacodingclub.kr/1655106626116-nb_og%20image.jpg">
@@ -38,7 +38,7 @@
                             <div class="feed_content card_content">
                                 <p>
                                     <span class="feed_author profile_username"><a href="#">{{ feed.author }}</a></span>
-                                    {{ feed.content }}
+                                    <p class="feed_content_text">{{ feed.content }}</p>
                                 </p>
                                 <p><time class="feed_time sm_time" datetime="{{ feed.created_at }}" title="{{ feed.created_at }}">
                                     {{ feed.created_at|timesince }}

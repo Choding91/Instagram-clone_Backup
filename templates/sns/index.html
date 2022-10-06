@@ -49,9 +49,9 @@
                                 <div class="feed_author profile_username">
                                     <span>{{ feed.author }}</span>
                                 </div>
-                                <div class="feed_location sm_meta">
+                                <!-- <div class="feed_location sm_meta">
                                     <p>대학로/혜화</p>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="card_btn">
                                 <button type="button" class="btn btn_card_more" data-notifyid="{{ feed.id }}" data-bs-toggle="modal" {% if user.username == feed.author %}data-auth="true"{% else %}data-auth="false"{% endif %} data-bs-target="#feedMoreModel">
@@ -91,7 +91,7 @@
                             <div class="card_content">
                                 <p>
                                     <span class="feed_author profile_username"><a href="#">{{ feed.author }}</a></span>
-                                    <p class="feed_content">{{ feed.content }}</p>
+                                    <p class="feed_content_text">{{ feed.content }}</p>
                                 </p>
                             </div>
                             <div class="card_datetime">
@@ -141,110 +141,32 @@
                         </div>
                     </div>
                     <ul class="follow_list">
-                        <li>
-                            <div class="list_card">
-                                <div class="card_header list_profile">
-                                    <div class="profile_image">
-                                        <img src="https://intermusicakorea.com/common/img/default_profile.png">
-                                    </div>
-                                    <div class="profile_meta card_meta">
-                                        <div class="profile_username">
-                                            <span>LeeHyunji</span>
+                        {% for follow_user in follow_users %}
+                            {% if follow_user.username != user.username %}
+                            <li>
+                                <div class="list_card">
+                                    <div class="card_header list_profile">
+                                        <div class="profile_image">
+                                            <img src="https://intermusicakorea.com/common/img/default_profile.png">
                                         </div>
-                                        <div class="profile_bio sm_meta">
-                                            <p>Followd by sparta</p>
+                                        <div class="profile_meta card_meta">
+                                            <div class="profile_username">
+                                                <span>{{follow_user.username}}</span>
+                                            </div>
+                                            <div class="profile_bio sm_meta">
+                                                <p>Followd by sparta</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="card_btn">
-                                        <a href="#" class="btn_follow">Follow</a>
+                                        <div class="card_btn">
+                                            <a href="#" class="btn_follow">Follow</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="list_card">
-                                <div class="card_header list_profile">
-                                    <div class="profile_image">
-                                        <img src="https://intermusicakorea.com/common/img/default_profile.png">
-                                    </div>
-                                    <div class="profile_meta card_meta">
-                                        <div class="profile_username">
-                                            <span>JuSemin</span>
-                                        </div>
-                                        <div class="profile_bio sm_meta">
-                                            <p>Followd by sparta</p>
-                                        </div>
-                                    </div>
-                                    <div class="card_btn">
-                                        <a href="#" class="btn_follow">Follow</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="list_card">
-                                <div class="card_header list_profile">
-                                    <div class="profile_image">
-                                        <img src="https://intermusicakorea.com/common/img/default_profile.png">
-                                    </div>
-                                    <div class="profile_meta card_meta">
-                                        <div class="profile_username">
-                                            <span>SonSangHun</span>
-                                        </div>
-                                        <div class="profile_bio sm_meta">
-                                            <p>Followd by sparta</p>
-                                        </div>
-                                    </div>
-                                    <div class="card_btn">
-                                        <a href="#" class="btn_follow">Follow</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="list_card">
-                                <div class="card_header list_profile">
-                                    <div class="profile_image">
-                                        <img src="https://intermusicakorea.com/common/img/default_profile.png">
-                                    </div>
-                                    <div class="profile_meta card_meta">
-                                        <div class="profile_username">
-                                            <span>ChoIngul</span>
-                                        </div>
-                                        <div class="profile_bio sm_meta">
-                                            <p>Followd by sparta</p>
-                                        </div>
-                                    </div>
-                                    <div class="card_btn">
-                                        <a href="#" class="btn_follow">Follow</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="list_card">
-                                <div class="card_header list_profile">
-                                    <div class="profile_image">
-                                        <img src="https://intermusicakorea.com/common/img/default_profile.png">
-                                    </div>
-                                    <div class="profile_meta card_meta">
-                                        <div class="profile_username">
-                                            <span>Yuseunjju</span>
-                                        </div>
-                                        <div class="profile_bio sm_meta">
-                                            <p>Followd by sparta</p>
-                                        </div>
-                                    </div>
-                                    <div class="card_btn">
-                                        <a href="#" class="btn_follow">Follow</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
                     </ul>
-
                 </div>
-                
             </section>
         </div>
     </div>
@@ -281,6 +203,12 @@
 {% endblock %}
 
 {% block extra_body %}
-
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                alert("{{ message }}");
+            </script>
+        {% endfor %}
+    {% endif %}
 <script src="{% static 'js/feed.js' %}"></script>
 {% endblock %}

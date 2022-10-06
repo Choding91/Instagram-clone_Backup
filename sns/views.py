@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Feed
 from .models import FeedComment
+from user.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -10,7 +11,8 @@ def main(request):
     user = request.user.is_authenticated
     if user:
         all_feed = Feed.objects.all().order_by('-created_at')
-        return render(request, 'sns/index.html', {'feeds': all_feed})
+        follow_users = User.objects.all().order_by('-id')[:5]
+        return render(request, 'sns/index.html', {'feeds': all_feed,'follow_users':follow_users})
     else:
         return redirect('/signin')
   
