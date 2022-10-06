@@ -26,7 +26,7 @@
 ![image](https://user-images.githubusercontent.com/12287842/194214627-2f8bf782-9aa2-4d8e-a8b7-1c9b5740dfa8.png)
 
 ## DB설계
-![image](https://user-images.githubusercontent.com/12287842/194216665-f545faad-4a50-4b9a-9a5b-0927634aee13.png)
+![Untitled](https://user-images.githubusercontent.com/12287842/194217489-d473d7d6-23a3-4720-b3be-ca80830d44bf.png)
 
 ## API설계
 ### User 앱 
