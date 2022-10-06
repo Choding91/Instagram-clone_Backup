@@ -57,10 +57,10 @@ class Signup(APIView):
             return Response(status=500, data=dict(message="사용자 이름 '" + username + "'이(가) 존재합니다."))
         elif not fullmatch(REGEX_EMAIL, email):
             return Response(status=500, data=dict(message="이메일 형식을 확인하세요."))        
-        elif not fullmatch(REGEX_PASSWORD, password):
-            return Response(status=500, data=dict(message="비밀번호는 8~16자리의 영문, 숫자, 특수문자 조합만 가능합니다."))
         elif not fullmatch(REGEX_USERNAME, username):
             return Response(status=500, data=dict(message="사용자 이름은 최대 4~12자리의 영문, 숫자, (-), (_), (.)만 가능합니다."))
+        elif not fullmatch(REGEX_PASSWORD, password):
+            return Response(status=500, data=dict(message="비밀번호는 8~16자리의 영문, 숫자, 특수문자 조합만 가능합니다."))
         else:
             make_password(password)
             User.objects.create(password=make_password(password),
@@ -128,14 +128,10 @@ def profile_update(request):
             return render(request, 'user/profile_update.html', {'error': '이름을 입력해주세요!'})
         elif username == '':
             return render(request, 'user/profile_update.html', {'error': '사용자 이름을 입력해주세요!'})
-        elif website == '':
-            return render(request, 'user/profile_update.html', {'error': '웹사이트 주소를 입력해주세요!'})
-        elif bio == '':
-            return render(request, 'user/profile_update.html', {'error': '소개를 입력해주세요!'})
         elif not fullmatch(REGEX_EMAIL, email):
             return render(request, 'user/profile_update.html', {'error': '이메일을 입력해주세요!'})
         elif not fullmatch(REGEX_PHONE, phone):
-            return render(request, 'user/profile_update.html', {'error': '전화번호을 입력해주세요!'})
+            return render(request, 'user/profile_update.html', {'error': '전화번호을 확인해주세요!'})
         else:
             user_instance = request.user
             user_instance.name = name

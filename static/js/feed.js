@@ -30,7 +30,7 @@ $("#staticBackdrop").on("show.bs.modal",function(event){
         $(this).find(".modal-title").text("게시글 수정");
         let form_url = '/feed/update/'+target_id
         $(this).find("form").attr("action",form_url);
-        let form_content = $("#feed_"+target_id).find(".feed_content").text();
+        let form_content = $("#feed_"+target_id).find(".feed_content_text").text();
         $(this).find("form textarea").val(form_content);
 
     }else{
