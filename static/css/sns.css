@@ -204,11 +204,13 @@ a.btn:active, a.btn:focus, a.btn:hover{
 }
 
 .btn_deletecomment{   
-        border-radius: 25px;
-        background-color: #eee;
-        cursor: pointer;
-        outline: none;
-        box-shadow: 1px 4px 0 rgb(0,0,0,0.5);
+    font-size: 0.75em;
+    margin-left: 4px;
+    border-radius: 25px;
+    background-color: #eee;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 1px 4px 0 rgb(0,0,0,0.3);
 }
 .btn_writebutton{
         border-radius: 25px;

@@ -61,7 +61,7 @@
                                         <p>
                                             <time class="feed_comment_time sm_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022"> {{comment.created_at|timesince}}</time>
                                             <a href="/sns/comment/delete/{{ comment.id }}">
-                                                <button class="btn_deletecomment">  삭제 </button>
+                                                <button class="btn_deletecomment"> delete </button>
                                             </a>
                                         </p>
                                     </div>
@@ -83,7 +83,7 @@
                                         <svg aria-label="Comment" class="_ab6-" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path></svg>
                                     </a>
                                 </div>
-                                <div class="feed_DM">
+                                <!-- <div class="feed_DM">
                                     <button type="button" class="btn btn_feed_DM">
                                         <svg aria-label="Share Post" class="_ab6-" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line><polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon></svg>
                                     </button>
@@ -92,11 +92,11 @@
                                     <button type="button" class="btn btn_feed_bookmark">
                                         <svg aria-label="Save" class="_ab6-" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon></svg>
                                     </button>
-                                </div>
+                                </div> -->
                             </div>
-                            <div class="feed_like">
+                            <!-- <div class="feed_like">
                                 <span class="like">73</span> likes
-                            </div>
+                            </div> -->
                             <div class="card_datetime">
                                 <time class="feed_time" datetime="2022-09-23T09:02:09.000Z" title="Sep 23, 2022">
                                     {{ feed.created_at|timesince }} AGO
@@ -109,7 +109,7 @@
                             <form class="form_feed_direct_comment" action="/sns/comment/write/{{ feed.id }}" method = "POST" >
                                 {% csrf_token %}
                                 <textarea aria-label="Add a comment…" placeholder="Add a comment…" rows="1" name='comment' class="input_direct_comment" autocomplete="off" autocorrect="off"></textarea>
-                                <button class="btn_writebutton">작성</button>
+                                <button class="btn btn_comment_submit" type="submit">Post</button>
                             </form>
                         </div>
                     </div>
